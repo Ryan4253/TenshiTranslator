@@ -51,7 +51,7 @@ SUGOI_ENGLISH_X = 0.25 * SCREEN_LENGTH
 SUGOI_ENGLISH_Y = 0.8 * SCREEN_WIDTH
 
 # Mouse Config
-CPS = 10 # Clicks per second. Just choose something not too crazy
+CPS = 10 
 
 # Timing Config
 TRANSLATION_PROCESS_TIME = 5 # Time to wait for the translation to generate
@@ -96,42 +96,55 @@ def japaneseListToEnglish(japList):
 
     return english
 
-with open(FILE_INPUT, 'r', encoding='utf8') as file, open(FILE_OUTPUT, 'w', encoding='utf8') as output:
-    for japanese in file:
-        # Add line breaks if end of paragraph (empty line)
-        if not japanese.strip():
-            output.write('\n')
-            continue
+def translateFile():
+    with open(FILE_INPUT, 'r', encoding='utf8') as file, open(FILE_OUTPUT, 'w', encoding='utf8') as output:
+        for japanese in file:
+            # Add line breaks if end of paragraph (empty line)
+            if not japanese.strip():
+                output.write('\n')
+                continue
 
-        # Output unaltered Japanese for proofread
-        output.write(japanese)
+            # Output unaltered Japanese for proofread
+            output.write(japanese)
 
-        # Replacing character names
-        for characterName, tempName in JAPANESE_NAMES.items():
-            japanese = japanese.replace(characterName, tempName)
+            # Replacing character names
+            for characterName, tempName in JAPANESE_NAMES.items():
+                japanese = japanese.replace(characterName, tempName)
 
-        # Removing Indent
-        japanese = japanese[1:] if japanese[0] == '　' else japanese
+            # Removing Indent
+            japanese = japanese[1:] if japanese[0] == '　' else japanese
 
-        # Split the sentence up if over 100 characters
-        tlList = [sentence + '。' for sentence in japanese.split('。') if sentence and sentence != '\n'] if len(japanese) > 100 else [japanese]
+            # Split the sentence up if over 100 characters
+            tlList = [sentence + '。' for sentence in japanese.split('。') if sentence and sentence != '\n'] if len(japanese) > 100 else [japanese]
 
-        # Initial translation
-        english = japaneseListToEnglish(tlList)
-
-        # Check if timed out, if yes wait 5 min and retry
-        if english.count('discord.gg') != 0:
-            print("Detected timeout, resuming in 5 minutes")
-            sleep(315)
+            # Initial translation
             english = japaneseListToEnglish(tlList)
 
-        # Replacing incorrectly translated names
-        for characterName, tempName in ENGLISH_NAMES.items():
-            english = english.replace(characterName, tempName)
+            # Check if timed out, if yes wait 5 min and retry
+            if english.count('discord.gg') != 0:
+                print("Detected timeout, resuming in 5 minutes")
+                sleep(315)
+                english = japaneseListToEnglish(tlList)
 
-        # Output English TL
-        output.write(english + '\n')
-        output.write('\n')
+            # Replacing incorrectly translated names
+            for characterName, tempName in ENGLISH_NAMES.items():
+                english = english.replace(characterName, tempName)
 
-        # Wait to prent timeouts
-        sleep(TRANSLATION_WAIT_TIME)
+            # Output English TL
+            output.write(english + '\n')
+            output.write('\n')
+
+            # Wait to prent timeouts
+            sleep(TRANSLATION_WAIT_TIME)
+
+# Translate File
+#translateFile()
+
+# Tune Cursor to Japanese 
+#pyautogui.moveTo(SUGOI_JAPANESE_X, SUGOI_JAPANESE_Y) 
+
+# Tune Cursor to English
+#pyautogui.moveTo(SUGOI_ENGLISH_X, SUGOI_ENGLISH_Y)
+
+# Tunr Cursor to translate button
+#pyautogui.moveTo(SUGOI_TL_X, SUGOI_TL_Y)
