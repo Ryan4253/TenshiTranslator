@@ -137,8 +137,11 @@ def translateFile():
             # Wait to prent timeouts
             sleep(TRANSLATION_WAIT_TIME)
 
+# Delay so you can tab to the sugoi page
+sleep(3)
+
 # Translate File
-#translateFile()
+translateFile()
 
 # Tune Cursor to Japanese 
 #pyautogui.moveTo(SUGOI_JAPANESE_X, SUGOI_JAPANESE_Y) 
