@@ -65,12 +65,24 @@ TRANSLATION_WAIT_TIME = 10 # Time to wait between translating lines. This is add
 FILE_INPUT = "input.txt"
 FILE_OUTPUT = "output2.txt"
 
+"""
+Simulates 3 mouse clicks using the CPS specified above
+"""
 def tripleClick():
     for i in range(3):
         pyautogui.click()
         sleep(1.0/CPS)
 
-def japaneseToEnglish(line):
+"""
+Translates a line of Japanese into English using Sugoi TL.
+Note that the tab must be open, and cursor positioning above should be tuned.
+
+Parameter :
+line - The japanese sentence to translate. This should be under 100 characters.
+
+Return - the translated english
+"""
+def japaneseToEnglish(line : str) -> str:
     # Copy line to clipboard
     pyperclip.copy(line)
 
@@ -92,7 +104,17 @@ def japaneseToEnglish(line):
     # Get English TL
     return pyperclip.paste()
 
-def japaneseListToEnglish(japList):
+"""
+Translates a set of lines of Japanese into English using Sugoi TL.
+The translation output will be contencated into one line. 
+Note that the tab must be open, and cursor positioning above should be tuned.
+
+Parameter :
+japList - The japanese sentences to translate.
+
+Return - the translated english
+"""
+def japaneseListToEnglish(japList : list) -> str:
     english = None
     for line in japList:
         english = japaneseToEnglish(line) if english is None else english + ' ' + japaneseToEnglish(line)
@@ -100,7 +122,22 @@ def japaneseListToEnglish(japList):
 
     return english
 
-def translateFile(inputFile, outputFile):
+"""
+The function will translate line by line from Japanese to English
+Japanese names are switched to placeholders, then back into English to prevent name with connotations (e.g. Mahiru)
+to mess up the translation.
+
+Parameter :
+inputFile - file name of japanese texts to translate. This should be in the same folder as the file
+outputFile - file name of the output. If the file is not present, it will be created by the program
+
+Output - text file with format:
+Original Line
+English Translation
+Empty line
+With two empty lines between paragraphs
+"""
+def translateFile(inputFile : str, outputFile : str):
     with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
         for japanese in file:
             # Add line breaks if end of paragraph (empty line)
@@ -141,17 +178,19 @@ def translateFile(inputFile, outputFile):
             # Wait to prent timeouts
             sleep(TRANSLATION_WAIT_TIME)
 
-# Delay so you can tab to the sugoi page
-sleep(3)
+# Driver Code. Modify as needed
+if __name__ == "__main__":
+    # Delay so you can tab to the sugoi page
+    sleep(3)
 
-# Translate File
-translateFile(FILE_INPUT, FILE_OUTPUT)
+    # Translate File
+    translateFile(FILE_INPUT, FILE_OUTPUT)
 
-# Tune Cursor to Japanese 
-#pyautogui.moveTo(SUGOI_JAPANESE_X, SUGOI_JAPANESE_Y) 
+    # Tune Cursor to Japanese 
+    #pyautogui.moveTo(SUGOI_JAPANESE_X, SUGOI_JAPANESE_Y) 
 
-# Tune Cursor to English
-#pyautogui.moveTo(SUGOI_ENGLISH_X, SUGOI_ENGLISH_Y)
+    # Tune Cursor to English
+    #pyautogui.moveTo(SUGOI_ENGLISH_X, SUGOI_ENGLISH_Y)
 
-# Tunr Cursor to translate button
-#pyautogui.moveTo(SUGOI_TL_X, SUGOI_TL_Y)
+    # Tunr Cursor to translate button
+    #pyautogui.moveTo(SUGOI_TL_X, SUGOI_TL_Y)
