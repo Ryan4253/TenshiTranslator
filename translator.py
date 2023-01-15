@@ -6,7 +6,7 @@ from time import sleep
 JAPANESE_NAMES = {
     '藤宮'   : 'フジミヤ', 
     '志保子' : 'シホコ', 
-    '修斗'   : 'シュウト', 
+    '修斗'   : 'フブキ', 
     '椎名'   : 'シイナ', 
     '真昼'   : 'マヒル', 
     '小夜'   : 'コヨル', 
@@ -30,8 +30,9 @@ JAPANESE_NAMES = {
 # English names to replace back
 ENGLISH_NAMES = {
     'Zhou'    : 'Amane',
-    'Shu'     : 'Amane',
-    'Shut'    : 'Shuuto',
+    'Shu '    : 'Amane ',
+    'Fubuki'  : 'Shuuto',
+    'Fubuchi' : 'Shuuto',
     'Shina'   : 'Shiina',
     'Kojou'   : 'Koyoru',
     'Coconoe' : 'Kokonoe',
@@ -48,7 +49,7 @@ SUGOI_JAPANESE_Y = 0.4 * SCREEN_WIDTH
 SUGOI_TL_X = 0.8 * SCREEN_LENGTH
 SUGOI_TL_Y = 0.275 * SCREEN_WIDTH
 SUGOI_ENGLISH_X = 0.25 * SCREEN_LENGTH
-SUGOI_ENGLISH_Y = 0.8 * SCREEN_WIDTH
+SUGOI_ENGLISH_Y = 0.83 * SCREEN_WIDTH
 
 # Mouse Config
 CPS = 10 
@@ -59,7 +60,7 @@ TRANSLATION_WAIT_TIME = 10 # Time to wait between translating lines. This is add
 
 # File Config
 FILE_INPUT = "input.txt"
-FILE_OUTPUT = "output.txt"
+FILE_OUTPUT = "output2.txt"
 
 def tripleClick():
     for i in range(3):
