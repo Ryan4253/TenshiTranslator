@@ -24,7 +24,7 @@ pip install pyperclip
 2. Configure the following constants to interface with Sugoi Translator.  
 Pixel count of your monitor. This is used so you are interfacing with percentages when setting cursor locations.  
 ![image](https://user-images.githubusercontent.com/71594512/212532529-ae794522-ee2a-4942-b61f-d3fd26d4dc37.png)  
-Then, you need to set the cursor location so that the it lands in the correct positions on the Sugoi TL site. Right is +x and down is +y. Use the 3 commented out methods in the main code to see if the cursor lands in the spots specified below.
+Then, you need to set the cursor location so that the it lands in the correct positions on the Sugoi TL site. Right is +x and down is +y. Use the 3 commented out methods in the main code to see if the cursor lands in the spots specified below.  
 ![image](https://user-images.githubusercontent.com/71594512/212532591-6d17df33-f534-4dbe-a798-47c361ad69b9.png)![image](https://user-images.githubusercontent.com/71594512/212532634-b87c300f-8a18-4b0a-bce1-5e37d568a740.png)
 ![image](https://user-images.githubusercontent.com/71594512/212532373-398d72f7-6e6f-4a14-8d4c-bf433622569c.png)
 
