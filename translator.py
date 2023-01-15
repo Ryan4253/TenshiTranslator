@@ -24,7 +24,9 @@ JAPANESE_NAMES = {
     '木戸'   : 'キド',
     '彩香'   : 'アヤカ',
     '茅野'   : 'タツキ',
-    '総司'   : 'ソウジ'
+    '総司'   : 'ソウジ',
+    '糸巻'   : 'イトマキ',
+    '文華'   : 'フミカ'
 }
 
 # English names to replace back
@@ -36,7 +38,8 @@ ENGLISH_NAMES = {
     'Shina'   : 'Shiina',
     'Kojou'   : 'Koyoru',
     'Coconoe' : 'Kokonoe',
-    'Tatsuki' : 'Kayano',   
+    'Tatsuki' : 'Kayano',
+    'Itmaki'  : 'Itomaki'
 }
 
 #Screen Config
@@ -97,8 +100,8 @@ def japaneseListToEnglish(japList):
 
     return english
 
-def translateFile():
-    with open(FILE_INPUT, 'r', encoding='utf8') as file, open(FILE_OUTPUT, 'w', encoding='utf8') as output:
+def translateFile(inputFile, outputFile):
+    with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
         for japanese in file:
             # Add line breaks if end of paragraph (empty line)
             if not japanese.strip():
@@ -128,8 +131,8 @@ def translateFile():
                 english = japaneseListToEnglish(tlList)
 
             # Replacing incorrectly translated names
-            for characterName, tempName in ENGLISH_NAMES.items():
-                english = english.replace(characterName, tempName)
+            for tempName, characterName  in ENGLISH_NAMES.items():
+                english = english.replace(tempName, characterName)
 
             # Output English TL
             output.write(english + '\n')
@@ -142,7 +145,7 @@ def translateFile():
 sleep(3)
 
 # Translate File
-translateFile()
+translateFile(FILE_INPUT, FILE_OUTPUT)
 
 # Tune Cursor to Japanese 
 #pyautogui.moveTo(SUGOI_JAPANESE_X, SUGOI_JAPANESE_Y) 
