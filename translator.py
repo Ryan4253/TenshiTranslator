@@ -32,10 +32,11 @@ JAPANESE_NAMES = {
 # English names to replace back
 ENGLISH_NAMES = {
     'Zhou'    : 'Amane',
-    'Shu '    : 'Amane ',
+    'Shu'     : 'Amane',
     'Fubuki'  : 'Shuuto',
     'Fubuchi' : 'Shuuto',
     'Shina'   : 'Shiina',
+    'mahiru'  : 'Mahiru',
     'Kojou'   : 'Koyoru',
     'Coconoe' : 'Kokonoe',
     'Tatsuki' : 'Kayano',
@@ -47,12 +48,12 @@ SCREEN_LENGTH = 1920
 SCREEN_WIDTH = 1080
 
 # Cursor Config. This is specific to your monitor.
-SUGOI_JAPANESE_X = 0.25 * SCREEN_LENGTH
-SUGOI_JAPANESE_Y = 0.4 * SCREEN_WIDTH
-SUGOI_TL_X = 0.8 * SCREEN_LENGTH
+SUGOI_JAPANESE_X = 0.22 * SCREEN_LENGTH
+SUGOI_JAPANESE_Y = 0.39 * SCREEN_WIDTH
+SUGOI_TL_X = 0.75 * SCREEN_LENGTH
 SUGOI_TL_Y = 0.275 * SCREEN_WIDTH
-SUGOI_ENGLISH_X = 0.25 * SCREEN_LENGTH
-SUGOI_ENGLISH_Y = 0.83 * SCREEN_WIDTH
+SUGOI_ENGLISH_X = 0.22 * SCREEN_LENGTH
+SUGOI_ENGLISH_Y = 0.72 * SCREEN_WIDTH
 
 # Mouse Config
 CPS = 10 
@@ -60,10 +61,11 @@ CPS = 10
 # Timing Config
 TRANSLATION_PROCESS_TIME = 5 # Time to wait for the translation to generate
 TRANSLATION_WAIT_TIME = 10 # Time to wait between translating lines. This is added to prevent timeouts 
+TIMEOUT_WAIT_TIME = 315 # Time to wait if timeout occurrs
 
 # File Config
-FILE_INPUT = "input.txt"
-FILE_OUTPUT = "output2.txt"
+FILE_INPUT = "Chap9.txt"
+FILE_OUTPUT = "Chap9TL.txt"
 
 """
 Simulates 3 mouse clicks using the CPS specified above
@@ -181,7 +183,7 @@ def translateFile(inputFile : str, outputFile : str):
 # Driver Code. Modify as needed
 if __name__ == "__main__":
     # Delay so you can tab to the sugoi page
-    sleep(3)
+    sleep(1)
 
     # Translate File
     translateFile(FILE_INPUT, FILE_OUTPUT)
@@ -192,5 +194,5 @@ if __name__ == "__main__":
     # Tune Cursor to English
     #pyautogui.moveTo(SUGOI_ENGLISH_X, SUGOI_ENGLISH_Y)
 
-    # Tunr Cursor to translate button
+    # Tune Cursor to translate button
     #pyautogui.moveTo(SUGOI_TL_X, SUGOI_TL_Y)
