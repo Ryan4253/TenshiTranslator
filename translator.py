@@ -49,11 +49,11 @@ SCREEN_WIDTH = 1080
 
 # Cursor Config. This is specific to your monitor.
 SUGOI_JAPANESE_X = 0.22 * SCREEN_LENGTH
-SUGOI_JAPANESE_Y = 0.39 * SCREEN_WIDTH
+SUGOI_JAPANESE_Y = 0.35 * SCREEN_WIDTH
 SUGOI_TL_X = 0.75 * SCREEN_LENGTH
-SUGOI_TL_Y = 0.275 * SCREEN_WIDTH
+SUGOI_TL_Y = 0.25 * SCREEN_WIDTH
 SUGOI_ENGLISH_X = 0.22 * SCREEN_LENGTH
-SUGOI_ENGLISH_Y = 0.72 * SCREEN_WIDTH
+SUGOI_ENGLISH_Y = 0.67 * SCREEN_WIDTH
 
 # Mouse Config
 CPS = 10 
@@ -61,10 +61,10 @@ CPS = 10
 # Timing Config
 TRANSLATION_PROCESS_TIME = 5 # Time to wait for the translation to generate
 TRANSLATION_WAIT_TIME = 10 # Time to wait between translating lines. This is added to prevent timeouts 
-TIMEOUT_WAIT_TIME = 315 # Time to wait if timeout occurrs
+TIMEOUT_WAIT_TIME = 330 # Time to wait if timeout occurrs
 
 # File Config
-FILE_INPUT = "Chap9.txt"
+FILE_INPUT = "sample.txt"
 FILE_OUTPUT = "Chap9TL.txt"
 
 """
@@ -119,7 +119,12 @@ Return - the translated english
 def japaneseListToEnglish(japList : list) -> str:
     english = None
     for line in japList:
-        english = japaneseToEnglish(line) if english is None else english + ' ' + japaneseToEnglish(line)
+        tl = japaneseToEnglish(line)
+        if tl.count('discord.gg') != 0:
+            print("Detected timeout, resuming once timeout is over.")
+            sleep(TIMEOUT_WAIT_TIME)
+            tl = japaneseToEnglish(line)
+        english = tl if english is None else english + ' ' + tl
         sleep(TRANSLATION_WAIT_TIME)
 
     return english
@@ -162,12 +167,6 @@ def translateFile(inputFile : str, outputFile : str):
 
             # Initial translation
             english = japaneseListToEnglish(tlList)
-
-            # Check if timed out, if yes wait 5 min and retry
-            if english.count('discord.gg') != 0:
-                print("Detected timeout, resuming in 5 minutes")
-                sleep(315)
-                english = japaneseListToEnglish(tlList)
 
             # Replacing incorrectly translated names
             for tempName, characterName  in ENGLISH_NAMES.items():
