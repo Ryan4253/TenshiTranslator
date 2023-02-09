@@ -1,6 +1,7 @@
 import pyautogui
 import pyperclip
-from time import sleep
+import keyboard
+from time import sleep, time
 
 # Names to replace
 JAPANESE_NAMES = {
@@ -63,9 +64,33 @@ TRANSLATION_PROCESS_TIME = 5 # Time to wait for the translation to generate
 TRANSLATION_WAIT_TIME = 10 # Time to wait between translating lines. This is added to prevent timeouts 
 TIMEOUT_WAIT_TIME = 330 # Time to wait if timeout occurrs
 
+# Pausing Config
+PAUSE_KEY = 'esc'
+KEYBOARD_STATE = {}
+
 # File Config
 FILE_INPUT = "sample.txt"
 FILE_OUTPUT = "Chap9TL.txt"
+
+def changedToPressed(key):
+    state = keyboard.is_pressed(key)
+    prev = False if not key in KEYBOARD_STATE else KEYBOARD_STATE[key]
+    KEYBOARD_STATE[key] = state
+
+    if state is True and prev is False:
+        return True
+    return False
+
+def pausableSleep(timeout, key):
+    startTime = time()
+    while time() - startTime < timeout:
+        if changedToPressed(key):
+            print('Pause')
+            while not changedToPressed(key):
+                sleep(0.01)
+            print('Resume')
+
+        sleep(0.01)
 
 """
 Simulates 3 mouse clicks using the CPS specified above
@@ -96,7 +121,7 @@ def japaneseToEnglish(line : str) -> str:
     # Click Translate, wait for results
     pyautogui.moveTo(SUGOI_TL_X, SUGOI_TL_Y)
     pyautogui.click()
-    sleep(TRANSLATION_PROCESS_TIME)
+    pausableSleep(TRANSLATION_PROCESS_TIME, PAUSE_KEY)
     # Copy English TL
     pyautogui.moveTo(SUGOI_ENGLISH_X, SUGOI_ENGLISH_Y)
     tripleClick()
@@ -121,10 +146,10 @@ def japaneseListToEnglish(japList : list) -> str:
         tl = japaneseToEnglish(line)
         if tl.count('discord.gg') != 0:
             print("Detected timeout, resuming once timeout is over.")
-            sleep(TIMEOUT_WAIT_TIME)
+            pausableSleep(TIMEOUT_WAIT_TIME, PAUSE_KEY)
             tl = japaneseToEnglish(line)
         english = tl if english is None else english + ' ' + tl
-        sleep(TRANSLATION_WAIT_TIME)
+        pausableSleep(TRANSLATION_WAIT_TIME, PAUSE_KEY)
 
     return english
 
@@ -176,7 +201,7 @@ def translateFile(inputFile : str, outputFile : str):
             output.write('\n')
 
             # Wait to prent timeouts
-            sleep(TRANSLATION_WAIT_TIME)
+            pausableSleep(TRANSLATION_WAIT_TIME, PAUSE_KEY)
 
 # Driver Code. Modify as needed
 if __name__ == "__main__":
