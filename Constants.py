@@ -1,9 +1,12 @@
+import pyautogui
+
 #Screen Config
 SCREEN_LENGTH = 1920
 SCREEN_WIDTH = 1080
 
 # Mouse Config
 CPS = 10 
+pyautogui.FAILSAFE = False
 
 # Pausing Config
 PAUSE_KEY = 'esc'

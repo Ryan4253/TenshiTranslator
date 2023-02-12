@@ -1,6 +1,8 @@
 from Constants import *
-import offlineTranslator
-import onlineTranslator
+import TextProcessor
+import OfflineTranslator
+import OnlineTranslator
+import Names
 import Mouse
 import time
 
@@ -10,7 +12,7 @@ if __name__ == "__main__":
     time.sleep(1)
 
     # Translate File
-    offlineTranslator.translate('a', 'b')
+    OfflineTranslator.translate('in.txt', 'out.txt')
 
     # Tune Cursor to Japanese 
     #Mouse.setCursor(ONLINE_JAPANESE_X, ONLINE_JAPANESE_Y) 

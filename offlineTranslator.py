@@ -49,9 +49,9 @@ def translate(inputFile : str, outputFile : str):
                 output.write('\n')
                 continue
 
-            tempJapanese = replaceText(japanese, Names.JAPANESE_TO_KATAKANA)
+            tempJapanese = replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
             english = japaneseToEnglish(tempJapanese)
-            english = replaceText(english, Names.ENGLISH_CORRECTION)
+            english = replaceTextRegex(english, Names.ENGLISH_CORRECTION)
 
             output.write(japanese)
             output.write(english)
