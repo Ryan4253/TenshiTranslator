@@ -6,23 +6,32 @@ import Names
 import Mouse
 import time
 
+def testCursor():
+    # Tune Cursor to Japanese 
+    Mouse.setCursor(ONLINE_JAPANESE_X, ONLINE_JAPANESE_Y) 
+
+    # Tune Cursor to translate button
+    Mouse.setCursor(ONLINE_TL_X, ONLINE_TL_Y)
+
+    # Tune Cursor to English (Online)
+    Mouse.setCursor(ONLINE_ENGLISH_X, ONLINE_ENGLISH_Y)
+
+    # Tune Cursor to English (Offline)
+    Mouse.setCursor(OFFLINE_ENGLISH_X, OFFLINE_ENGLISH_Y)
+
 # Driver Code. Modify as needed
 if __name__ == "__main__":
     # Delay so you can tab to the sugoi page
     time.sleep(1)
 
     # Translate File
-    OfflineTranslator.translate('in.txt', 'out.txt')
+    OfflineTranslator.translate('4.txt', '4out.txt')
+    OfflineTranslator.translate('5.txt', '5out.txt')
+    OfflineTranslator.translate('7.txt', '7out.txt')
+    OfflineTranslator.translate('8.txt', '8out.txt')
+    OfflineTranslator.translate('9.txt', '9out.txt')
+    OfflineTranslator.translate('10.txt', '10out.txt')
 
-    # Tune Cursor to Japanese 
-    #Mouse.setCursor(ONLINE_JAPANESE_X, ONLINE_JAPANESE_Y) 
 
-    # Tune Cursor to translate button
-    #Mouse.setCursor(ONLINE_TL_X, ONLINE_TL_Y)
 
-    # Tune Cursor to English (Online)
-    #Mouse.setCursor(ONLINE_ENGLISH_X, ONLINE_ENGLISH_Y)
-
-    # Tune Cursor to English (Offline)
-    #Mouse.setCursor(OFFLINE_ENGLISH_X, OFFLINE_ENGLISH_Y)
 

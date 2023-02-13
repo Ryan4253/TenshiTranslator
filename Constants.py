@@ -5,7 +5,7 @@ SCREEN_LENGTH = 1920
 SCREEN_WIDTH = 1080
 
 # Mouse Config
-CPS = 10 
+CPS = 100 
 pyautogui.FAILSAFE = False
 
 # Pausing Config
