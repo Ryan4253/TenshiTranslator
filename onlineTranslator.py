@@ -7,13 +7,8 @@ from  TextProcessor import *
 from Constants import *
 
 """
-Translates a line of Japanese into English using Sugoi TL.
-Note that the tab must be open, and cursor positioning above should be tuned.
-
-Parameter :
-line - The japanese sentence to translate. This should be under 100 characters.
-
-Return - the translated english
+Translates a Japanese sentence into English using SugoiTL Site
+Cursor positioning in Constants.py should be tuned.
 """
 def japaneseToEnglish(line : str) -> str:
     # Copy line to clipboard
@@ -38,18 +33,12 @@ def japaneseToEnglish(line : str) -> str:
     return pyperclip.paste()
 
 """
-Translates a set of lines of Japanese into English using Sugoi TL.
-The translation output will be contencated into one line. 
-Note that the tab must be open, and cursor positioning above should be tuned.
-
-Parameter :
-japList - The japanese sentences to translate.
-
-Return - the translated english
+Translates a set of Japanese sentences into English using Sugoi TL.
+If timeout is detected on the site, the function will block until the translation is over
 """
-def japaneseListToEnglish(jpList : list) -> str:
+def japaneseListToEnglish(japaneseList : list) -> str:
     english = None
-    for line in jpList:
+    for line in japaneseList:
         tl = japaneseToEnglish(line)
 
         if isTimeoutMessage(tl):
@@ -63,19 +52,10 @@ def japaneseListToEnglish(jpList : list) -> str:
     return english
 
 """
-The function will translate line by line from Japanese to English
-Japanese names are switched to placeholders, then back into English to prevent name with connotations (e.g. Mahiru)
-to mess up the translation.
+Translates a Japanese sentence into English using SugoiTL offline translator
+Cursor positioning in Constants.py should be tuned.
 
-Parameter :
-inputFile - file name of japanese texts to translate. This should be in the same folder as the file
-outputFile - file name of the output. If the file is not present, it will be created by the program
-
-Output - text file with format:
-Original Line
-English Translation
-Empty line
-With two empty lines between paragraphs
+Variable delay time will be used if constantTimeDelay is false, else OFFLINE_PROCESS_TIME will be used
 """
 def translate(inputFile : str, outputFile : str):
     with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:

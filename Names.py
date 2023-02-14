@@ -1,3 +1,14 @@
+"""
+Name conversion tables. This is series-dependent
+"""
+
+
+"""
+Name conversion table from Kanji to Katakana
+
+Prevents names with meaning from affecting the translation
+This is recommended to be used with the online translator where a character limit is imposed
+"""
 JAPANESE_TO_KATAKANA = {
     '藤宮'   : 'フジミヤ', 
     '志保子' : 'シホコ', 
@@ -28,6 +39,12 @@ JAPANESE_TO_KATAKANA = {
     '大地'   : 'ダイチ'
 }
 
+"""
+Name conversion table from Kanji to English
+
+Prevents names with meaning from affecting the translation. More accurate than katakana replacements
+This is recommended to be used with the offline translator 
+"""
 JAPANESE_TO_ENGLISH = {
     '藤宮'     : 'Fujimiya', 
     '志保子'   : 'Shihoko', 
@@ -59,6 +76,11 @@ JAPANESE_TO_ENGLISH = {
     '大地'     : 'Daichi'
 }
 
+"""
+Correction table to correct any incorrectly translated names
+
+Left side uses regex to prevent misreplacements
+"""
 ENGLISH_CORRECTION = {
     'Zhou'    : 'Amane',
     'Shu '    : 'Amane',

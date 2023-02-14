@@ -7,13 +7,10 @@ from Constants import *
 from TextProcessor import *
 
 """
-Translates a line of Japanese into English using Sugoi TL.
-Note that the tab must be open, and cursor positioning above should be tuned.
+Translates a Japanese sentence into English using SugoiTL offline translator
+Cursor positioning in Constants.py should be tuned.
 
-Parameter :
-line - The japanese sentence to translate. This should be under 100 characters.
-
-Return - the translated english
+Variable delay time will be used if constantTimeDelay is false, else OFFLINE_PROCESS_TIME will be used
 """
 def japaneseToEnglish(line : str, constantTimeDelay : bool) -> str:
     # Copy line to clipboard
@@ -32,19 +29,14 @@ def japaneseToEnglish(line : str, constantTimeDelay : bool) -> str:
     return pyperclip.paste()
 
 """
-The function will translate line by line from Japanese to English
-Japanese names are switched to placeholders, then back into English to prevent name with connotations (e.g. Mahiru)
-to mess up the translation.
+Translates a Japanese text file into English line by line using the Sugoi offline translator
+Japanese names are switched to english first to prevent name with connotations from affecting
+translation results.
 
 Parameter :
-inputFile - file name of japanese texts to translate. This should be in the same folder as the file
-outputFile - file name of the output. If the file is not present, it will be created by the program
-
-Output - text file with format:
-Original Line
-English Translation
-Empty line
-With two empty lines between paragraphs
+inputFile - File name of japanese texts to translate. This should be in the same folder as the file
+outputFile - File name of the result. If the file is not present, it will be created by the program
+useConstantTime - Whether to wait for a constant time as specified in Constants.py to wait for the translation to process
 """
 def translate(inputFile : str, outputFile : str, useConstantTime = True):
     with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
