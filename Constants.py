@@ -1,4 +1,5 @@
 import pyautogui
+import math
 
 #Screen Config
 SCREEN_LENGTH = 1920
@@ -8,7 +9,7 @@ SCREEN_WIDTH = 1080
 CPS = 100 
 pyautogui.FAILSAFE = False
 
-# Pausing Config
+# Keyboard Config
 PAUSE_KEY = 'esc'
 
 # Cursor Config
@@ -22,9 +23,12 @@ ONLINE_TL_Y = 0.25 * SCREEN_WIDTH
 ONLINE_ENGLISH_X = 0.22 * SCREEN_LENGTH
 ONLINE_ENGLISH_Y = 0.67 * SCREEN_WIDTH
 
-# Timing Config
-OFFLINE_PROCESS_TIME = 6 # Time to wait for the translation to generate
+# Constant Timing Config
+OFFLINE_PROCESS_TIME = 6
 
-ONLINE_PROCESS_TIME = 5 # Time to wait for the translation to generate
-ONLINE_WAIT_TIME = 10 # Time to wait between translating lines. This is added to prevent timeouts 
-TIMEOUT_WAIT_TIME = 330 # Time to wait if timeout occurrs
+ONLINE_PROCESS_TIME = 5
+ONLINE_WAIT_TIME = 10
+TIMEOUT_WAIT_TIME = 330
+
+# Offline Variable Timing Config. You will have to go into timing.py to edit the function
+OFFLINE_MAX_PROCESS_TIME = 30

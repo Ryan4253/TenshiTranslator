@@ -1,8 +1,6 @@
 from Constants import *
-import TextProcessor
 import OfflineTranslator
 import OnlineTranslator
-import Names
 import Mouse
 import time
 
@@ -25,13 +23,8 @@ if __name__ == "__main__":
     time.sleep(1)
 
     # Translate File
-    OfflineTranslator.translate('4.txt', '4out.txt')
-    OfflineTranslator.translate('5.txt', '5out.txt')
-    OfflineTranslator.translate('7.txt', '7out.txt')
-    OfflineTranslator.translate('8.txt', '8out.txt')
-    OfflineTranslator.translate('9.txt', '9out.txt')
-    OfflineTranslator.translate('10.txt', '10out.txt')
-
+    OfflineTranslator.translate('5.txt', '5out.txt', useConstantTime=False)
+    
 
 
 

@@ -2,6 +2,7 @@ import pyperclip
 import Keyboard
 import Mouse
 import Names
+import Timing
 from  TextProcessor import *
 from Constants import *
 
@@ -26,7 +27,7 @@ def japaneseToEnglish(line : str) -> str:
     # Click Translate, wait for results
     Mouse.setCursor(ONLINE_TL_X, ONLINE_TL_Y)
     Mouse.click()
-    Keyboard.pausableSleep(ONLINE_PROCESS_TIME, PAUSE_KEY)
+    Timing.pausableSleep(ONLINE_PROCESS_TIME, PAUSE_KEY)
 
     # Copy English TL
     Mouse.setCursor(ONLINE_ENGLISH_X, ONLINE_ENGLISH_Y)
@@ -53,11 +54,11 @@ def japaneseListToEnglish(jpList : list) -> str:
 
         if isTimeoutMessage(tl):
             print("Detected timeout, resuming once timeout is over.")
-            Keyboard.pausableSleep(TIMEOUT_WAIT_TIME, PAUSE_KEY)
+            Timing.pausableSleep(TIMEOUT_WAIT_TIME, PAUSE_KEY)
             tl = japaneseToEnglish(line)
         
         english = tl if english is None else english + ' ' + tl
-        Keyboard.pausableSleep(ONLINE_WAIT_TIME, PAUSE_KEY)
+        Timing.pausableSleep(ONLINE_WAIT_TIME, PAUSE_KEY)
 
     return english
 
@@ -76,7 +77,7 @@ English Translation
 Empty line
 With two empty lines between paragraphs
 """
-def translate(inputFile : str, outputFile : str) -> None:
+def translate(inputFile : str, outputFile : str):
     with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
         for japanese in file:
             if isEmptyLine(japanese):
@@ -94,4 +95,4 @@ def translate(inputFile : str, outputFile : str) -> None:
             output.write(english + '\n')
             output.write('\n')
 
-            Keyboard.pausableSleep(ONLINE_WAIT_TIME, PAUSE_KEY)
+            Timing.pausableSleep(ONLINE_WAIT_TIME, PAUSE_KEY)
