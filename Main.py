@@ -23,7 +23,13 @@ if __name__ == "__main__":
     time.sleep(1)
 
     # Translate File
-    OfflineTranslator.translate('5.txt', '5out.txt', useConstantTime=False)
+    start = time.perf_counter()
+    OfflineTranslator.translate("7.txt", "7out.txt", useVariableTime=True)
+    OfflineTranslator.translate("8.txt", "8out.txt", useVariableTime=True)
+    OfflineTranslator.translate("9.txt", "9out.txt", useVariableTime=True)
+    OfflineTranslator.translate("10.txt", "10out.txt", useVariableTime=True)
+    print(time.perf_counter()-start)
+
     
 
 

@@ -1,6 +1,7 @@
 from time import time, sleep
 from Keyboard import changedToPressed
 import Constants
+import math
 
 """
 Sleeps for the specified time. The sleep is paused if the given key is pressed, and unpaused if pressed again
@@ -26,6 +27,6 @@ This is used for the offline translator where translation time is dependent on c
 The constants within this function is user-dependent. You should measure time vs length empirically and fit an exponential function
 """
 def computeProcessingTime(characterLength : int) -> float:
-    variableTime = 0.735 * max.exp(characterLength * 0.0116)+1 # +1 to make sure the equation is always greater than the data points
+    variableTime = 0.735 * math.exp(characterLength * 0.0116)+1 # +1 to make sure the equation is always greater than the data points
     return min(max(1, variableTime), Constants.OFFLINE_MAX_PROCESS_TIME)
     

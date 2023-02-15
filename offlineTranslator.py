@@ -12,10 +12,10 @@ Cursor positioning in Constants.py should be tuned.
 
 Variable delay time will be used if constantTimeDelay is false, else OFFLINE_PROCESS_TIME will be used
 """
-def japaneseToEnglish(line : str, constantTimeDelay : bool) -> str:
+def japaneseToEnglish(line : str, useVariableTime : bool) -> str:
     # Copy line to clipboard
     pyperclip.copy(line)
-    if constantTimeDelay:
+    if useVariableTime:
         pausableSleep(computeProcessingTime(len(line)), PAUSE_KEY)
     else:
         pausableSleep(OFFLINE_PROCESS_TIME, PAUSE_KEY)
@@ -38,7 +38,7 @@ inputFile - File name of japanese texts to translate. This should be in the same
 outputFile - File name of the result. If the file is not present, it will be created by the program
 useConstantTime - Whether to wait for a constant time as specified in Constants.py to wait for the translation to process
 """
-def translate(inputFile : str, outputFile : str, useConstantTime = True):
+def translate(inputFile : str, outputFile : str, useVariableTime = False):
     with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
         for japanese in file:
             if isEmptyLine(japanese):
@@ -46,7 +46,7 @@ def translate(inputFile : str, outputFile : str, useConstantTime = True):
                 continue
 
             tempJapanese = replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
-            english = japaneseToEnglish(tempJapanese, useConstantTime)
+            english = japaneseToEnglish(tempJapanese, useVariableTime)
             english = replaceTextRegex(english, Names.ENGLISH_CORRECTION)
 
             output.write(japanese)
