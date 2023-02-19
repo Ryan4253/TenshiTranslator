@@ -7,8 +7,9 @@ from  TextProcessor import *
 from Constants import *
 
 """
-Translates a Japanese sentence into English using SugoiTL Site
-Cursor positioning in Constants.py should be tuned.
+Translates a Japanese sentence into English using Sugoi TL.
+Directly interfaces with the site by controlling the keyboard and cursor
+If timeout is detected on the site, the function will block until the translation is over
 """
 def japaneseToEnglish(line : str) -> str:
     # Copy line to clipboard
@@ -29,27 +30,22 @@ def japaneseToEnglish(line : str) -> str:
     Mouse.tripleClick()
     Keyboard.copy()
 
-    # Get English TL
-    return pyperclip.paste()
+    # Get English TL, check for timeout
+    result = pyperclip.paste()
+    if not isTimeoutMessage():
+        Timing.pausableSleep(ONLINE_WAIT_TIME)
+        return result
+    
+    print("Detected timeout, resuming once timeout is over.")
+    Timing.pausableSleep(TIMEOUT_WAIT_TIME, PAUSE_KEY)
+    return japaneseToEnglish(line)
 
 """
 Translates a set of Japanese sentences into English using Sugoi TL.
 If timeout is detected on the site, the function will block until the translation is over
 """
-def japaneseListToEnglish(japaneseList : list) -> str:
-    english = None
-    for line in japaneseList:
-        tl = japaneseToEnglish(line)
-
-        if isTimeoutMessage(tl):
-            print("Detected timeout, resuming once timeout is over.")
-            Timing.pausableSleep(TIMEOUT_WAIT_TIME, PAUSE_KEY)
-            tl = japaneseToEnglish(line)
-        
-        english = tl if english is None else english + ' ' + tl
-        Timing.pausableSleep(ONLINE_WAIT_TIME, PAUSE_KEY)
-
-    return english
+def japaneseListToEnglish(japanese : list) -> str:
+    return " ".join([japaneseToEnglish(sentence) for sentence in japanese])
 
 """
 Translates a Japanese sentence into English using SugoiTL offline translator
