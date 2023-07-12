@@ -3,6 +3,7 @@ import Keyboard
 import Mouse
 import Names
 import Timing
+import os
 from  TextProcessor import *
 from Constants import *
 
@@ -48,14 +49,14 @@ def japaneseListToEnglish(japanese : list) -> str:
     return " ".join([japaneseToEnglish(sentence) for sentence in japanese])
 
 """
-Translates a Japanese sentence into English using SugoiTL offline translator
+Translates a Japanese sentence into English using SugoiTL online translator
 Cursor positioning in Constants.py should be tuned.
-
-Variable delay time will be used if constantTimeDelay is false, else OFFLINE_PROCESS_TIME will be used
+Result is stored in a new file '[Name]-Translated.txt'
 """
-def translate(inputFile : str, outputFile : str):
-    with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
-        for japanese in file:
+def translate(file : str):
+    outputFile = os.path.splitext(file)[0] + "-Translated.txt"
+    with open(file, 'r', encoding='utf8') as lines, open(outputFile, 'w', encoding='utf8') as output:
+        for japanese in lines:
             if isEmptyLine(japanese):
                 output.write('\n')
                 continue

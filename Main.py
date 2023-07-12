@@ -25,12 +25,12 @@ if __name__ == "__main__":
 
     # Translate using the offline translator
     #start = time.perf_counter()
-    #offlineTranslator.translate("Anime_Blu-Ray_Volume_2_SS.txt", "mogus.txt", useVariableTime=True)
+    #OfflineTranslator.translate(file, useVariableTime=True)
     #print(time.perf_counter()-start)
     
     # Translate using the online translator
     #start = time.perf_counter()
-    #onlineTranslator.translate(file, "mogus.txt")
+    #OnlineTranslator.translate(file)
     #print(time.perf_counter()-start)
 
 

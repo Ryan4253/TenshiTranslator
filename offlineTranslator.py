@@ -1,4 +1,5 @@
 import pyperclip
+import os
 import Keyboard
 import Mouse
 import Names
@@ -10,7 +11,7 @@ from TextProcessor import *
 Translates a Japanese sentence into English using SugoiTL offline translator
 Cursor positioning in Constants.py should be tuned.
 
-Variable delay time will be used if constantTimeDelay is false, else OFFLINE_PROCESS_TIME will be used
+Variable delay time will be used if useVariableTime is true, else OFFLINE_PROCESS_TIME will be used
 """
 def japaneseToEnglish(line : str, useVariableTime : bool) -> str:
     # Copy line to clipboard
@@ -32,15 +33,16 @@ def japaneseToEnglish(line : str, useVariableTime : bool) -> str:
 Translates a Japanese text file into English line by line using the Sugoi offline translator
 Japanese names are switched to english first to prevent name with connotations from affecting
 translation results.
+Result is stored in a new file '[Name]-Translated.txt'
 
 Parameter :
-inputFile - File name of japanese texts to translate. This should be in the same folder as the file
-outputFile - File name of the result. If the file is not present, it will be created by the program
-useConstantTime - Whether to wait for a constant time as specified in Constants.py to wait for the translation to process
+file - File name of japanese texts to translate. This should be in the same folder as the file
+useVariableTime - Whether to wait for a time dependent on line specified in Constants.py for the translation to process
 """
-def translate(inputFile : str, outputFile : str, useVariableTime = False):
-    with open(inputFile, 'r', encoding='utf8') as file, open(outputFile, 'w', encoding='utf8') as output:
-        for japanese in file:
+def translate(file : str, useVariableTime = False):
+    outputFile = os.path.splitext(file)[0] + "-Translated.txt"
+    with open(file, 'r', encoding='utf8') as lines, open(outputFile, 'w', encoding='utf8') as output:
+        for japanese in lines:
             if isEmptyLine(japanese):
                 output.write('\n')
                 continue
