@@ -1,6 +1,6 @@
 from Constants import *
-import offlineTranslator
-import onlineTranslator
+import OfflineTranslator
+import OnlineTranslator
 import FileTranslator
 import Mouse
 import time
