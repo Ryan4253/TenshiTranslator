@@ -62,8 +62,13 @@ def mergeOutput(file: str):
 Removes all the intermediate files generated during the file translation process
 """
 def removeIntermediateFiles(file: str):
-    os.remove(os.path.splitext(file)[0] + "-preprocess.txt")
-    os.remove(os.path.splitext(file)[0] + '-preprocess_output.txt')
-    os.remove(os.path.splitext(file)[0] + "-english.txt")
+    if os.path.isfile(os.path.splitext(file)[0] + "-preprocess.txt"):
+        os.remove(os.path.splitext(file)[0] + "-preprocess.txt")
+
+    if os.path.isfile(os.path.splitext(file)[0] + '-preprocess_output.txt'):
+        os.remove(os.path.splitext(file)[0] + '-preprocess_output.txt')
+
+    if os.path.isfile(os.path.splitext(file)[0] + "-english.txt"):
+        os.remove(os.path.splitext(file)[0] + "-english.txt")
 
 
