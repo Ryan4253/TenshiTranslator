@@ -2,6 +2,7 @@ import Names
 import os
 from  TextProcessor import *
 from Constants import *
+import time
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -9,7 +10,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 """
 Translates a Japanese sentence into English using Sugoi TL.
@@ -71,7 +71,7 @@ def translate(file : str):
 
     with open(file, 'r', encoding='utf8') as lines, open(outputFile, 'w', encoding='utf8') as output:
         for index, japanese in enumerate(lines):
-            print(f'Current File: {file} ; Progress: {index}/{numLines} lines')
+            print(f'Current File: {file} ; Progress: {index+1}/{numLines} lines')
 
             if isEmptyLine(japanese):
                 output.write('\n')

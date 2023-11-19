@@ -1,43 +1,6 @@
 """
-Name conversion tables. This is series-dependent
+Name conversion tables. This is context-dependent
 """
-
-
-"""
-Name conversion table from Kanji to Katakana
-
-Prevents names with meaning from affecting the translation
-This is recommended to be used with the online translator where a character limit is imposed
-"""
-JAPANESE_TO_KATAKANA = {
-    '藤宮'   : 'フジミヤ', 
-    '志保子' : 'シホコ', 
-    '修斗'   : 'フブキ', 
-    '椎名'   : 'シイナ', 
-    '真昼'   : 'マヒル', 
-    '小夜'   : 'コヨル', 
-    '朝陽'   : 'アサヒ', 
-    '赤澤'   : 'アカザワ', 
-    '樹'     : 'イツキ', 
-    '大輝'   : 'タイキ', 
-    '白河'   : 'シラカワ', 
-    '千歳'   : 'チトセ', 
-    '門脇'   : 'カドワキ', 
-    '優太'   : 'ユウタ', 
-    '九重'   : 'ココノエ', 
-    '柊'     : 'ヒイラギ',
-    '一哉'   : 'カズヤ',
-    '木戸'   : 'キド',
-    '彩香'   : 'アヤカ',
-    '茅野'   : 'タツキ',
-    '総司'   : 'ソウジ',
-    '糸巻'   : 'イトマキ',
-    '文華'   : 'フミカ',
-    '大橋'   : 'オオハシ',
-    '莉乃'   : 'リノ',
-    '宮本'   : 'ミヤモト',
-    '大地'   : 'ダイチ'
-}
 
 """
 Name conversion table from Kanji to English
