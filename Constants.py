@@ -1,5 +1,4 @@
 import pyautogui
-import math
 
 #Screen Config
 SCREEN_LENGTH = 1920
@@ -16,19 +15,16 @@ PAUSE_KEY = 'esc'
 OFFLINE_ENGLISH_X = 0.02 * SCREEN_LENGTH
 OFFLINE_ENGLISH_Y = 0.05 * SCREEN_WIDTH
 
-ONLINE_JAPANESE_X = 0.22 * SCREEN_LENGTH
-ONLINE_JAPANESE_Y = 0.35 * SCREEN_WIDTH
-ONLINE_TL_X = 0.75 * SCREEN_LENGTH
-ONLINE_TL_Y = 0.25 * SCREEN_WIDTH
-ONLINE_ENGLISH_X = 0.22 * SCREEN_LENGTH
-ONLINE_ENGLISH_Y = 0.67 * SCREEN_WIDTH
-
 # Constant Timing Config
 OFFLINE_PROCESS_TIME = 6
-
-ONLINE_PROCESS_TIME = 5
-ONLINE_WAIT_TIME = 10
 TIMEOUT_WAIT_TIME = 330
 
 # Offline Variable Timing Config. You will have to go into timing.py to edit the function
 OFFLINE_MAX_PROCESS_TIME = 30
+
+# Website Config
+SUGOI_TL_URL = "https://sugoitranslator.com/"
+SWAP_LANGUAGE_BUTTON_XPATH = "//*[@id=\"routify-app\"]/div[1]/div/div[1]/div/div/div[2]/button"
+TRANSLATE_BUTTON_XPATH = "//*[@id=\"routify-app\"]/div[1]/div/div[1]/div/div/div[2]/button"
+INPUT_BOX_XPATH = "//*[@id=\"routify-app\"]/div[1]/div/div[2]/div/div[1]"
+OUTPUT_BOX_XPATH = "//*[@id=\"routify-app\"]/div[1]/div/div[2]/div/div[2]"
