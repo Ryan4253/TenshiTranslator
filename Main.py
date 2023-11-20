@@ -1,4 +1,4 @@
-import OnlineTranslator
+from OnlineTranslator import OnlineTranslator
 from BatchTranslator import BatchTranslator
 import Constants
 from OfflineTranslator import OfflineTranslator
@@ -11,8 +11,12 @@ if __name__ == "__main__":
     # translator = BatchTranslator(Constants.BATCH_SIZE, Constants.SUGOI_IP)
     # translator.translate(file)
 
-    translator = OfflineTranslator(Constants.SUGOI_IP)
+    # translator = OfflineTranslator(Constants.SUGOI_IP)
+    # translator.translate(file)
+    
+    translator = OnlineTranslator(330)
     translator.translate(file)
+
 
     # Translate using the online translator
     #OnlineTranslator.translate(file)
