@@ -1,9 +1,5 @@
 # Constant Timing Config
-OFFLINE_PROCESS_TIME = 6
 TIMEOUT_WAIT_TIME = 330
-
-# Offline Variable Timing Config. You will have to go into timing.py to edit the function
-OFFLINE_MAX_PROCESS_TIME = 30
 
 # Website Config
 SUGOI_TL_URL = "https://sugoitranslator.com/"

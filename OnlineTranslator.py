@@ -71,7 +71,7 @@ def translate(file : str):
 
     with open(file, 'r', encoding='utf8') as lines, open(outputFile, 'w', encoding='utf8') as output:
         for index, japanese in enumerate(lines):
-            print(f'Current File: {file} ; Progress: {index+1}/{numLines} lines')
+            print(f'Current File: {file}, Progress: {index+1}/{numLines} lines')
 
             if isEmptyLine(japanese):
                 output.write('\n')
