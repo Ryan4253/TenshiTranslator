@@ -1,3 +1,4 @@
+from Translator import Translator
 import Names
 import os
 import TextProcessor
@@ -11,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class OnlineTranslator:
+class OnlineTranslator(Translator):
     def __init__(self, timeoutWait : int):
         self.timeoutWait = timeoutWait
 

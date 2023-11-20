@@ -1,3 +1,4 @@
+from Translator import Translator
 import requests
 import json
 from time import perf_counter
@@ -5,7 +6,7 @@ import os
 import Names
 import TextProcessor
 
-class OfflineTranslator:
+class OfflineTranslator(Translator):
     def __init__(self, host: str):
         self.host = host
 
