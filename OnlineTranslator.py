@@ -1,4 +1,5 @@
 from Translator import Translator
+from FileOutput import FileOutput
 import Names
 import os
 import TextProcessor
@@ -13,7 +14,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class OnlineTranslator(Translator):
-    def __init__(self, timeoutWait : int):
+    def __init__(self, outputOption : FileOutput, timeoutWait : int):
+        super().__init__(outputOption);
         self.timeoutWait = timeoutWait
 
         self.url = "https://sugoitranslator.com/"
@@ -101,5 +103,5 @@ class OnlineTranslator(Translator):
                 englishLines.append(english)
         
             print(f"Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second")
-            self.fileOutput(inputFilePath, japaneseLines, englishLines)
+            super().outputOption.writeOutput(inputFilePath, japaneseLines, englishLines)
             self.driver.quit()

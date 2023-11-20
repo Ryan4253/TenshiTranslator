@@ -7,7 +7,7 @@ import Names
 import TextProcessor
 
 class BatchTranslator(Translator):
-    def __init__(self, batchSize: int, host: str):
+    def __init__(self, host: str, batchSize: int):
         self.batchSize = batchSize
         self.host = host
 
