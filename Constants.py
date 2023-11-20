@@ -1,4 +1,10 @@
-# Constant Timing Config
+# Offline translation config
+SUGOI_IP = '35.2.197.227:14366'
+
+# Batch translation config
+BATCH_SIZE = 64
+
+# Online translation Config
 TIMEOUT_WAIT_TIME = 330
 
 # Website Config
