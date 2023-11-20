@@ -1,6 +1,6 @@
 import requests
 import json
-from time import time
+from time import perf_counter
 import os
 import Names
 import TextProcessor
@@ -22,7 +22,7 @@ class OfflineTranslator:
 
     def translate(self, inputFilePath: str):
         outputFilePath = os.path.splitext(inputFilePath)[0] + "-Translated.txt"
-        startTime = time()
+        startTime = perf_counter()
         numLines = sum(1 for _ in open(inputFilePath, encoding='utf8'))
         englishLines = []
 
@@ -52,4 +52,4 @@ class OfflineTranslator:
             print(f"An error occurred: {str(e)}")
             return
 
-        print(f"Translation Complete. Took {time() - startTime:.3f} seconds, with an average speed of {numLines / (time() - startTime):.3f} lines per second")
+        print(f"Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {numLines / (perf_counter() - startTime):.3f} lines per second")
