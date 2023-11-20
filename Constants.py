@@ -1,5 +1,3 @@
-import pyautogui
-
 # Constant Timing Config
 OFFLINE_PROCESS_TIME = 6
 TIMEOUT_WAIT_TIME = 330
