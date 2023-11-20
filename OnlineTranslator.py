@@ -16,10 +16,10 @@ Translates a Japanese sentence into English using Sugoi TL.
 Directly interfaces with the site by controlling the keyboard and cursor
 If timeout is detected on the site, the function will block until the translation is over
 """
-def japaneseToEnglish(driver: webdriver, line : str) -> str:
+def japaneseToEnglish(driver: webdriver, japanese : str) -> str:
     inputBox = driver.find_element(By.XPATH, INPUT_BOX_XPATH)
     inputBox.clear()
-    inputBox.send_keys(line)
+    inputBox.send_keys(japanese)
 
     outputBox = driver.find_element(By.XPATH, OUTPUT_BOX_XPATH)
     currentText = outputBox.text
@@ -34,26 +34,27 @@ def japaneseToEnglish(driver: webdriver, line : str) -> str:
     if isTimeoutMessage(outputBox.text):
         print("Detected timeout, resuming once timeout is over.")
         time.sleep(TIMEOUT_WAIT_TIME)
-        return japaneseToEnglish(driver, line)
+        return japaneseToEnglish(driver, japanese)
     
     return outputBox.text
-    
-
 
 """
 Translates a set of Japanese sentences into English using Sugoi TL.
 If timeout is detected on the site, the function will block until the translation is over
 """
-def japaneseListToEnglish(driver: webdriver, japanese : list) -> str:
-    return " ".join([japaneseToEnglish(driver, sentence) for sentence in japanese])
+def japaneseLinesToEnglish(driver: webdriver, japaneseLines : list) -> str:
+    return " ".join([japaneseToEnglish(driver, japanese) for japanese in japaneseLines])
 
 """
 Translates a Japanese sentence into English using SugoiTL online translator
 Cursor positioning in Constants.py should be tuned.
 Result is stored in a new file '[Name]-Translated.txt'
 """
-def translate(file : str):
-    outputFile = os.path.splitext(file)[0] + "-Translated.txt"
+def translate(inputFilePath : str):
+    outputFilePath = os.path.splitext(inputFilePath)[0] + "-Translated.txt"
+    startTime = time()
+    numLines = sum(1 for _ in open(inputFilePath, encoding='utf8'))
+
     options = Options()
     options.add_argument("--headless=new")
 
@@ -67,11 +68,10 @@ def translate(file : str):
     swapLanguageButton = driver.find_element(By.XPATH, SWAP_LANGUAGE_BUTTON_XPATH)
     swapLanguageButton.click()
 
-    numLines = sum(1 for _ in open(file, encoding='utf8'))
 
-    with open(file, 'r', encoding='utf8') as lines, open(outputFile, 'w', encoding='utf8') as output:
-        for index, japanese in enumerate(lines):
-            print(f'Current File: {file}, Progress: {index+1}/{numLines} lines')
+    with open(inputFilePath, 'r', encoding='utf8') as japaneseLines, open(outputFilePath, 'w', encoding='utf8') as output:
+        for index, japanese in enumerate(japaneseLines):
+            print(f'Current File: {inputFilePath}, Progress: {index+1}/{numLines} lines')
 
             if isEmptyLine(japanese):
                 output.write('\n')
@@ -82,10 +82,11 @@ def translate(file : str):
             japanese = replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
             japanese = removeIndent(japanese)
 
-            english = japaneseListToEnglish(driver, splitToSentence(japanese, 100))
+            english = japaneseLinesToEnglish(driver, splitToSentence(japanese, 100))
             english = replaceTextRegex(english, Names.ENGLISH_CORRECTION)
 
             output.write(english + '\n')
             output.write('\n')
     
+    print(f"Translation Complete. Took {time() - startTime:.3f} seconds, with an average speed of {numLines / (time() - startTime):.3f} lines per second")
     driver.quit()
