@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from FileOutput import FileOutput
+from OutputFormat import OutputFormat
 
 class Translator(ABC):  
-    def __init__(self, outputOption : FileOutput):
+    def __init__(self, outputOption : OutputFormat):
         self.outputOption = outputOption
         
     def translate(self, inputFileName: str):

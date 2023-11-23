@@ -1,5 +1,5 @@
-# Offline translation config
-SUGOI_IP = '35.2.197.227:14366'
+    # Offline translation config
+SUGOI_IP = '10.10.18.229:14366'
 
 # Batch translation config
 BATCH_SIZE = 64
