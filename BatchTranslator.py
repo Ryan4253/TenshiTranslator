@@ -7,7 +7,7 @@ import requests
 import json
 
 class BatchTranslator(Translator):
-    def __init__(self, outputOption: OutputFormat, host: str, batchSize: int):
+    def __init__(self, outputOption: OutputFormat, host: str, batchSize: int = 64):
         super().__init__(outputOption)
         self.batchSize = batchSize
         self.host = host

@@ -8,8 +8,9 @@ from EnglishOnlyFormat import EnglishOnlyFormat
 # Driver Code. Modify as needed
 if __name__ == "__main__":
     file = "Chapter_1_preview.txt"
+    SUGOI_IP = '10.10.18.229:14366'
     
-    translator = BatchTranslator(EnglishOnlyFormat(), Constants.SUGOI_IP, Constants.BATCH_SIZE)
+    translator = BatchTranslator(EnglishOnlyFormat(), SUGOI_IP)
     translator.translate(file)
 
     # translator = OfflineTranslator(LineByLineFormat(), Constants.SUGOI_IP)

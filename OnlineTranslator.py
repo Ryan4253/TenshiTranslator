@@ -11,7 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class OnlineTranslator(Translator):
-    def __init__(self, outputOption: OutputFormat, timeoutWait: int):
+    def __init__(self, outputOption: OutputFormat, timeoutWait: int = 315):
         super().__init__(outputOption)
         self.timeoutWait = timeoutWait
 
