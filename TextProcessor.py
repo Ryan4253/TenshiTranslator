@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 
 def retrieveLines(inputFilePath: str) -> list[str]:
     lines = []
@@ -10,7 +11,7 @@ def retrieveLines(inputFilePath: str) -> list[str]:
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-        return
+        sys.exit(1)
 
     return lines
 

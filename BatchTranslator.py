@@ -5,6 +5,7 @@ import TextProcessor
 from time import perf_counter
 import requests
 import json
+import sys
 
 class BatchTranslator(Translator):
     def __init__(self, outputOption: OutputFormat, host: str, batchSize: int = 64):
@@ -46,7 +47,7 @@ class BatchTranslator(Translator):
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")
-            return
+            sys.exit(1)
 
         print(f"Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second")
 

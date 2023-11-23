@@ -3,6 +3,7 @@ from OutputFormat import OutputFormat
 import Names
 import TextProcessor
 from time import perf_counter, sleep
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -86,7 +87,7 @@ class OnlineTranslator(Translator):
     
         except Exception as e:
             print(f"An error occurred: {str(e)}")
-            return
+            sys.exit(1)
         
         print(f'Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second')
         
