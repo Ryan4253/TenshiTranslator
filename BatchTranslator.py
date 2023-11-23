@@ -1,19 +1,18 @@
 from Translator import Translator
-import requests
-import json
-from time import perf_counter
-import os
+from OutputFormat import OutputFormat
 import Names
 import TextProcessor
-from OutputFormat import OutputFormat
+from time import perf_counter
+import requests
+import json
 
 class BatchTranslator(Translator):
-    def __init__(self, outputOption : OutputFormat, host: str, batchSize: int):
+    def __init__(self, outputOption: OutputFormat, host: str, batchSize: int):
         super().__init__(outputOption)
         self.batchSize = batchSize
         self.host = host
 
-    def sendTranslationRequest(self, batch: list[str]):
+    def sendTranslationRequest(self, batch: list[str]) -> list[str]:
         data = {'message': 'batch translate', 'content': batch}
         headers = {'content-type': 'application/json'}
         response = requests.post(f'http://{self.host}/', data=json.dumps(data), headers=headers)
@@ -26,13 +25,9 @@ class BatchTranslator(Translator):
 
     def translate(self, inputFilePath: str):
         startTime = perf_counter()
-        japaneseLines = []
+        japaneseLines = TextProcessor.retrieveLines(inputFilePath)
         englishLines = []
 
-        with open(inputFilePath, 'r', encoding='utf8') as file:
-            for line in file:
-                japaneseLines.append(line)
-        
         try:
             batch = []
 
@@ -42,14 +37,10 @@ class BatchTranslator(Translator):
 
                 batch.append(japanese)
 
-                if(len(batch) >= 64):
+                if(len(batch) >= 64 or index == len(japaneseLines)-1):
                     englishLines.extend(self.sendTranslationRequest(batch))
                     print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
                     batch.clear()
-
-            if batch:
-                englishLines.extend(self.sendTranslationRequest(batch))
-                print(f'Current File: {inputFilePath}, Progress: {len(japaneseLines)}/{len(japaneseLines)} lines')
 
             englishLines = [TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION) for english in englishLines]
 
@@ -59,5 +50,5 @@ class BatchTranslator(Translator):
 
         print(f"Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second")
 
-        outputFilePath = os.path.splitext(inputFilePath)[0] + "-Translated.txt"
+        outputFilePath = TextProcessor.makeOutputFilePath(inputFilePath)
         self.outputOption.writeFile(outputFilePath, japaneseLines, englishLines)

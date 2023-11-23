@@ -1,20 +1,17 @@
 from Translator import Translator
 from OutputFormat import OutputFormat
 import Names
-import os
 import TextProcessor
-from Constants import *
 from time import perf_counter, sleep
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class OnlineTranslator(Translator):
-    def __init__(self, outputOption : OutputFormat, timeoutWait : int):
+    def __init__(self, outputOption: OutputFormat, timeoutWait: int):
         super().__init__(outputOption)
         self.timeoutWait = timeoutWait
 
@@ -27,19 +24,33 @@ class OnlineTranslator(Translator):
         options = Options()
         options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options = options)
-    
-    def japaneseToEnglish(self, japanese) -> str:
+        self.initWebsite()
+
+    def __del__(self):
+        self.driver.quit()
+
+    def initWebsite(self):
+        self.driver.get("https://sugoitranslator.com/")
+
+        WebDriverWait(self.driver, 5).until(
+            EC.presence_of_element_located((By.XPATH, self.swapLanguageButtonXPath))
+        )
+
+        swapLanguageButton = self.driver.find_element(By.XPATH, self.swapLanguageButtonXPath)
+        swapLanguageButton.click()
+
+    def japaneseToEnglish(self, japanese: str | list[str]) -> str:
         if(type(japanese) is list):
             return " ".join([self.japaneseToEnglish(lines) for lines in japanese])
         
-        inputBox = self.driver.find_element(By.XPATH, INPUT_BOX_XPATH)
+        inputBox = self.driver.find_element(By.XPATH, self.inputBoxPath)
         inputBox.clear()
         inputBox.send_keys(japanese)
 
-        outputBox = self.driver.find_element(By.XPATH, OUTPUT_BOX_XPATH)
+        outputBox = self.driver.find_element(By.XPATH, self.outputBoxPath)
         currentText = outputBox.text
 
-        translateButton = self.driver.find_element(By.XPATH, TRANSLATE_BUTTON_XPATH)
+        translateButton = self.driver.find_element(By.XPATH, self.translateButtonXPath)
         translateButton.click()
 
         WebDriverWait(self.driver, 5).until(
@@ -55,38 +66,29 @@ class OnlineTranslator(Translator):
 
     def translate(self, inputFilePath: str):
         startTime = perf_counter()
-        self.driver.get("https://sugoitranslator.com/")
-
-        WebDriverWait(self.driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, SWAP_LANGUAGE_BUTTON_XPATH))
-        )
-
-        swapLanguageButton = self.driver.find_element(By.XPATH, SWAP_LANGUAGE_BUTTON_XPATH)
-        swapLanguageButton.click()
-
-        japaneseLines = []
+        japaneseLines = TextProcessor.retrieveLines(inputFilePath)
         englishLines = []
 
-        with open(inputFilePath, 'r', encoding='utf8') as file:
-            for line in file:
-                japaneseLines.append(line)
-        
-        for index, japanese in enumerate(japaneseLines):
-            print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
+        try:
+            for index, japanese in enumerate(japaneseLines):
+                print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
 
-            if TextProcessor.isEmptyLine(japanese):
-                englishLines.append('\n')
-                continue
-            
-            japanese = TextProcessor.replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
-            japanese = TextProcessor.removeIndent(japanese)
+                if TextProcessor.isEmptyLine(japanese):
+                    englishLines.append('\n')
+                    continue
+                
+                japanese = TextProcessor.replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
+                japanese = TextProcessor.removeIndent(japanese)
 
-            english = self.japaneseToEnglish(TextProcessor.splitToSentence(japanese, 100))
-            english = TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION)
-            englishLines.append(english)
+                english = self.japaneseToEnglish(TextProcessor.splitToSentence(japanese, 100))
+                english = TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION)
+                englishLines.append(english)
     
-        print(f"Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second")
-        self.driver.quit()
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return
         
-        outputFilePath = os.path.splitext(inputFilePath)[0] + "-Translated.txt"
+        print(f'Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second')
+        
+        outputFilePath = TextProcessor.makeOutputFilePath(inputFilePath)
         self.outputOption.writeFile(outputFilePath, japaneseLines, englishLines)

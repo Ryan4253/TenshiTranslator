@@ -2,14 +2,14 @@ from OutputFormat import OutputFormat
 import TextProcessor
 
 class EnglishOnlyFormat(OutputFormat):
-    def writeFile(self, outputFilePath, japaneseLines, englishLines):
+    def writeFile(self, outputFilePath: str, japaneseLines: list[str], englishLines: list[str]):
         with open(outputFilePath, 'w', encoding='utf8') as output:
             for japanese, english in zip(japaneseLines, englishLines):
                 if TextProcessor.isEmptyLine(japanese):
                     output.write('\n')
                     continue
 
-                if not TextProcessor.hasJapaneseCharacters(japanese):
+                if TextProcessor.noJapaneseCharacters(japanese):
                     output.write(japanese)
                     continue
                     

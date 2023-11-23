@@ -1,4 +1,21 @@
 import re
+import os
+
+def retrieveLines(inputFilePath: str) -> list[str]:
+    lines = []
+    try:
+        with open(inputFilePath, 'r', encoding='utf8') as file:
+            for line in file:
+                lines.append(line)
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return
+
+    return lines
+
+def makeOutputFilePath(inputFilePath: str) -> str:
+    return os.path.splitext(inputFilePath)[0] + "-Translated.txt"
 
 """
 Replaces phrases within the sentence according to the conversion table
