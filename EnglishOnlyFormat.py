@@ -15,4 +15,3 @@ class EnglishOnlyFormat(OutputFormat):
                     
                 output.write(english)
                 output.write('\n')
-        
