@@ -1,6 +1,6 @@
 from Translator import Translator
 from OutputFormat import OutputFormat
-import Names
+from Glossary import Glossary
 import TextProcessor
 from time import perf_counter
 import requests
@@ -8,8 +8,8 @@ import json
 import sys
 
 class OfflineTranslator(Translator):
-    def __init__(self, outputOption: OutputFormat, host: str):
-        super().__init__(outputOption)
+    def __init__(self, outputOption: OutputFormat, glossary: Glossary,host: str):
+        super().__init__(outputOption, glossary)
         self.host = host
 
     def sendTranslationRequest(self, japanese: str) -> str:
@@ -32,11 +32,11 @@ class OfflineTranslator(Translator):
             for index, japanese in enumerate(japaneseLines):
                 print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
 
-                japanese = TextProcessor.replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
+                japanese = self.glossary.replaceNames(japanese)
                 japanese = TextProcessor.removeIndent(japanese)
 
                 english = self.sendTranslationRequest(japanese)
-                english = TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION)
+                english = self.glossary.applyCorrections(english)
                 englishLines.append(english)
 
         except Exception as e:

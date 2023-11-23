@@ -1,6 +1,6 @@
 from Translator import Translator
 from OutputFormat import OutputFormat
-import Names
+from Glossary import Glossary
 import TextProcessor
 from time import perf_counter, sleep
 import sys
@@ -12,8 +12,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class OnlineTranslator(Translator):
-    def __init__(self, outputOption: OutputFormat, timeoutWait: int = 315):
-        super().__init__(outputOption)
+    def __init__(self, outputOption: OutputFormat, glossary: Glossary, timeoutWait: int = 315):
+        super().__init__(outputOption, glossary)
         self.timeoutWait = timeoutWait
 
         self.url = "https://sugoitranslator.com/"
@@ -78,11 +78,11 @@ class OnlineTranslator(Translator):
                     englishLines.append('\n')
                     continue
                 
-                japanese = TextProcessor.replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
+                japanese = self.glossary.replaceNames(japanese)
                 japanese = TextProcessor.removeIndent(japanese)
 
                 english = self.japaneseToEnglish(TextProcessor.splitToSentence(japanese, 100))
-                english = TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION)
+                english = self.glossary.applyCorrections(english)
                 englishLines.append(english)
     
         except Exception as e:

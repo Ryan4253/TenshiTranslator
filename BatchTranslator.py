@@ -1,6 +1,6 @@
 from Translator import Translator
 from OutputFormat import OutputFormat
-import Names
+from Glossary import Glossary
 import TextProcessor
 from time import perf_counter
 import requests
@@ -8,8 +8,8 @@ import json
 import sys
 
 class BatchTranslator(Translator):
-    def __init__(self, outputOption: OutputFormat, host: str, batchSize: int = 64):
-        super().__init__(outputOption)
+    def __init__(self, outputOption: OutputFormat, glossary: Glossary, host: str, batchSize: int = 64):
+        super().__init__(outputOption, glossary)
         self.batchSize = batchSize
         self.host = host
 
@@ -33,7 +33,7 @@ class BatchTranslator(Translator):
             batch = []
 
             for index, japanese in enumerate(japaneseLines):
-                japanese = TextProcessor.replaceText(japanese, Names.JAPANESE_TO_ENGLISH)
+                japanese = self.glossary.replaceNames(japanese)
                 japanese = TextProcessor.removeIndent(japanese)
 
                 batch.append(japanese)
@@ -43,7 +43,7 @@ class BatchTranslator(Translator):
                     print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
                     batch.clear()
 
-            englishLines = [TextProcessor.replaceTextRegex(english, Names.ENGLISH_CORRECTION) for english in englishLines]
+            englishLines = [self.glossary.applyCorrections(english) for english in englishLines]
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")

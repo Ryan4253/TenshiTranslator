@@ -19,26 +19,6 @@ def makeOutputFilePath(inputFilePath: str) -> str:
     return os.path.splitext(inputFilePath)[0] + "-Translated.txt"
 
 """
-Replaces phrases within the sentence according to the conversion table
-"""
-def replaceText(line: str, table: dict) -> str:
-    ret = line
-    for textOld, textNew in table.items():
-        ret = ret.replace(textOld, textNew)
-    
-    return ret
-
-"""
-Replaces phrases within the sentence according to the conversion table using regex
-"""
-def replaceTextRegex(line: str, table: dict) -> str:
-    ret = line
-    for pattern, replacement in table.items():
-        ret = re.sub(pattern, replacement, ret)
-    
-    return ret
-
-"""
 Checks if a sentence is empty
 """
 def isEmptyLine(line: str) -> bool:
