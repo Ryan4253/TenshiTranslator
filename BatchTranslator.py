@@ -15,23 +15,20 @@ class BatchTranslator(Translator):
         self.sugoiDirectory = sugoiDirectory
         self.host = '127.0.0.1:14366'
 
-        print("OfflineTranslator: Starting Server...")
+        print("BatchTranslator: Starting Server...")
         self.server = subprocess.Popen(
             self.sugoiDirectory + "\\Code\\backendServer\\Program-Backend\\Sugoi-Japanese-Translator\\offlineTranslation\\activateOfflineTranslationServer.bat", 
             cwd=self.sugoiDirectory + "\\Code\\backendServer\\Program-Backend\\Sugoi-Japanese-Translator\\offlineTranslation", 
             creationflags=subprocess.CREATE_NO_WINDOW,
         )
         sleep(12)
-        print("OfflineTranslator: Server Started")
+        print("BatchTranslator: Server Started")
 
     def __del__(self):
-        print("OfflineTranslator: Stopping Server...")
+        print("BatchTranslator: Stopping Server...")
         self.server.kill()
-        # data = {'message': 'close server'}
-        # headers = {'content-type': 'application/json'}
-        # response = requests.post(f'http://{SUGOI_IP}/', data=json.dumps(data), headers=headers)
-        # time.sleep(5)
-        print("OfflineTranslator: Server Stopped")
+        sleep(3)
+        print("BatchTranslator: Server Stopped")
 
     def sendTranslationRequest(self, batch: list[str]) -> list[str]:
         data = {'message': 'batch translate', 'content': batch}

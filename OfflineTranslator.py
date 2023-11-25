@@ -26,6 +26,7 @@ class OfflineTranslator(Translator):
     def __del__(self):
         print("OfflineTranslator: Stopping Server...")
         self.server.kill()
+        sleep(3)
         print("OfflineTranslator: Server Stopped")
 
     def sendTranslationRequest(self, japanese: str) -> str:
