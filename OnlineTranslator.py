@@ -59,7 +59,7 @@ class OnlineTranslator(Translator):
         )
 
         if TextProcessor.isTimeoutMessage(outputBox.text):
-            print("Detected timeout, resuming once timeout is over.")
+            print("Detected timeout, resuming once timeout is over.", flush=True)
             sleep(self.timeoutWait)
             return self.japaneseToEnglish(japanese)
         
@@ -72,7 +72,7 @@ class OnlineTranslator(Translator):
 
         try:
             for index, japanese in enumerate(japaneseLines):
-                print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines')
+                print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
 
                 if TextProcessor.isEmptyLine(japanese):
                     englishLines.append('\n')
@@ -86,10 +86,10 @@ class OnlineTranslator(Translator):
                 englishLines.append(english)
     
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
+            print(f"An error occurred: {str(e)}", flush=True)
             sys.exit(1)
         
-        print(f'Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second')
+        print(f'Translation Complete. Took {perf_counter() - startTime:.3f} seconds, with an average speed of {len(japaneseLines) / (perf_counter() - startTime):.3f} lines per second\n', flush=True)
         
         outputFilePath = TextProcessor.makeOutputFilePath(inputFilePath)
         self.outputOption.writeFile(outputFilePath, japaneseLines, englishLines)

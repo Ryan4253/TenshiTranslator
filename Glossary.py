@@ -19,7 +19,7 @@ class Glossary:
                     self.corrections[pattern] = correction
         
         except Exception as e:
-            print(f'An error occurred: {e}')
+            print(f'An error occurred: {e}', flush=True)
             sys.exit(1)
     
     def replaceNames(self, line: str) -> str:
