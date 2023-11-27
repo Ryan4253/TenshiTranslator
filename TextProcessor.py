@@ -10,7 +10,7 @@ def retrieveLines(inputFilePath: str) -> list[str]:
                 lines.append(line)
 
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        print(f"An error occurred: {str(e)}", flush=True)
         sys.exit(1)
 
     return lines

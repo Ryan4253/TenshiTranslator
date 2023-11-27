@@ -39,13 +39,13 @@ if __name__ == "__main__":
             'GlossaryCorrections': 'Corrections.csv',
             'OutputFormat': 'LineByLine',
             'Files': ['sources/yume-no-ukihashi.txt', 'sources/Chapter_1_preview.txt']}
+
     headers = {'content-type': 'application/json'}
     requests.post(f'http://127.0.0.1:5000/', data=json.dumps(data), headers=headers)
 
     p.kill()
 
     for line in p.stdout:
-        #the real code does filtering here
-        print ("test:", line.rstrip())
+        print ("test:", line.decode())
     
     

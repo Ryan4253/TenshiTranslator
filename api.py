@@ -34,7 +34,6 @@ def process():
 
     files = data.get('Files')
     for file in files:
-        print("Translation", flush=True)
         translator.translate(file)
     
     return json.dumps("Translation Complete")
@@ -46,5 +45,4 @@ def shutdownServer():
     func()
 
 if __name__ == '__main__':
-    print("HI", file=sys.stdout)
     app.run(host='127.0.0.1', port=5000)
