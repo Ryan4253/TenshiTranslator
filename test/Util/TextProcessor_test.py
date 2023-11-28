@@ -10,6 +10,11 @@ def test_retrieveLines():
     assert lines == ["しゅくだいしているから邪魔じゃましないでくれ。\n", 
                      "\n", 
                      "◇◇◇◇"]
+    
+    with pytest.raises(SystemExit) as excinfo:  
+        retrieveLines("lol.txt")  
+    
+    assert excinfo.value.code == 1
 
 def test_makeOutputFilePath():
     assert makeOutputFilePath("Test.txt") == "Test-Translated.txt"
