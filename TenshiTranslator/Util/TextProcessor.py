@@ -47,7 +47,7 @@ def splitToSentence(line: str, maxLength: int) -> list:
     return [sentence + '。' for sentence in line.split('。') if sentence and sentence != '\n']
 
 """
-Check if a sentence contains no Japanese characters
+Checks if string contains no Japanese characters
 """
 def noJapaneseCharacters(line: str) -> bool:
     pattern = re.compile(r'[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]')
