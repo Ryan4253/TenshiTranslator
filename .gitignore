@@ -4,3 +4,4 @@ __pycache__/
 build/
 Backend.spec
 .coverage
+.pytest_cache
