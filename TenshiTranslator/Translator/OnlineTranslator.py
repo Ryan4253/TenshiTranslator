@@ -12,6 +12,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import chromedriver_autoinstaller
+
 class OnlineTranslator(Translator):
     def __init__(self, outputOption: OutputFormat, glossary: Glossary, timeoutWait: int = 315):
         super().__init__(outputOption, glossary)
@@ -22,6 +24,8 @@ class OnlineTranslator(Translator):
         self.translateButtonXPath = "//*[@id=\"routify-app\"]/div[1]/div/div[1]/div/button"
         self.inputBoxPath = "//*[@id=\"routify-app\"]/div[1]/div/div[2]/div/div[1]"
         self.outputBoxPath = "//*[@id=\"routify-app\"]/div[1]/div/div[2]/div/div[2]"
+
+        chromedriver_autoinstaller.install()
 
         options = Options()
         options.add_argument("--headless=new")
