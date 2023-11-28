@@ -8,6 +8,7 @@ import subprocess
 import requests
 import json
 
+@pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is not None, reason="Test doesn't work on Github Actions.")
 def test_api():
     p = subprocess.Popen(['python', 'Backend.py'])
 
