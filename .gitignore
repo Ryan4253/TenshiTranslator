@@ -1,4 +1,4 @@
-*.txt
+sources/
 __pycache__/
 .vscode/
 build/
