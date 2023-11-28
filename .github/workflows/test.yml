@@ -1,16 +1,9 @@
 name: Unit Test
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+on: [push, pull_request]
 
 jobs:
-  build:
+  Test:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +24,10 @@ jobs:
     - name: Run unit test
       run: |
         pytest
+
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        files: coverage.xml
