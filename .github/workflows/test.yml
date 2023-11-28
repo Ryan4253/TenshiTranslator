@@ -30,7 +30,7 @@ jobs:
 
     - name: Run unit test
       run: |
-        pytest --cov=TenshiTranslator test/
+        pytest
 
     - name: Upload Coverage
       uses: codecov/codecov-action@v3

@@ -3,5 +3,4 @@ __pycache__/
 .vscode/
 build/
 Backend.spec
-.coverage
 .pytest_cache
