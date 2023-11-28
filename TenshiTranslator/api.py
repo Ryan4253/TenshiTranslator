@@ -28,14 +28,15 @@ def process():
 
     glossary = Glossary(data.get('GlossaryNames'), data.get('GlossaryCorrections'))
     outputFormat = LineByLineFormat() if data.get('OutputFormat') == 'LineByLine' else EnglishOnlyFormat
-    sugoi = data.get('SugoiDirectory')
 
     translator = None
     if(data.get('Translator') == 'Batch'):
+        sugoi = data.get('SugoiDirectory')
         translator = BatchTranslator(outputFormat, glossary, sugoi, data.get('BatchSize'))
     elif(data.get('Translator') == 'Online'):
-        translator = OnlineTranslator(outputFormat, glossary, sugoi, data.get('TimeoutWait'))
+        translator = OnlineTranslator(outputFormat, glossary, data.get('TimeoutWait'))
     else:
+        sugoi = data.get('SugoiDirectory')
         translator = OfflineTranslator(outputFormat, glossary, sugoi)
 
     files = data.get('Files')

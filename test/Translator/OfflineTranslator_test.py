@@ -18,6 +18,4 @@ def test_OfflineTranslator():
     result = retrieveLines("test/assets/SampleInput-Translated.txt")
     os.remove("test/assets/SampleInput-Translated.txt")
 
-    print(expected)
-    print(result)
     assert expected == result
