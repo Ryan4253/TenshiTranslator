@@ -1,4 +1,4 @@
-## @package TextProcessor
+## @module TextProcessor
 #  Contains functions that process text, such as removing indent, splitting sentences, etc.
  
 import re

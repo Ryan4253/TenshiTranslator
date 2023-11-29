@@ -1,4 +1,4 @@
-## @package BatchTranslator
+## @module BatchTranslator
 #  Contains the BatchTranslator class
 
 from TenshiTranslator.Translator.Translator import Translator

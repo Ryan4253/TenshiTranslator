@@ -1,4 +1,4 @@
-## @package OfflineTranslator
+## @module OfflineTranslator
 #  Contains the OfflineTranslator class
 
 from TenshiTranslator.Translator.Translator import Translator

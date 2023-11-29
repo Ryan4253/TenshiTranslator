@@ -1,4 +1,4 @@
-## @package OutputFormat
+## @module OutputFormat
 #  Contains the EnglishOnlyFormat class
 
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat

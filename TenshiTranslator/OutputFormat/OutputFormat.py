@@ -1,4 +1,4 @@
-## @package OutputFormat
+## @module OutputFormat
 #  Contains the OutputFormat abstract class
 
 from abc import ABC, abstractmethod

@@ -1,4 +1,4 @@
-## @package Translator
+## @module Translator
 #  Contains the Translator abstract class
 
 from abc import ABC, abstractmethod

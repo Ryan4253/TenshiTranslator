@@ -1,4 +1,4 @@
-## @package OnlineTranslator
+## @module OnlineTranslator
 #  Contains the OnlineTranslator class
 
 from TenshiTranslator.Translator.Translator import Translator

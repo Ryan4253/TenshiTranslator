@@ -1,4 +1,4 @@
-## @package Glossary
+## @module Glossary
 #  Contains the glossary class
 
 import csv

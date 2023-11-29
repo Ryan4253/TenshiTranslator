@@ -1,4 +1,4 @@
-## @package api
+## @module api
 #  Contains flask server api for TenshiTranslator
 
 from TenshiTranslator.Translator.OnlineTranslator import OnlineTranslator
