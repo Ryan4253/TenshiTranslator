@@ -1,3 +1,6 @@
+## @package OnlineTranslator
+#  Contains the OnlineTranslator class
+
 from TenshiTranslator.Translator.Translator import Translator
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
 from TenshiTranslator.Util.Glossary import Glossary
@@ -14,7 +17,17 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import chromedriver_autoinstaller
 
+## Translator that translates by automating the sugoitranslator website using selenium
+#  As sugoi translator has a rate limit, this translator automatically waits for the timeout to end before resuming.
+#  The advantage of this translator is that it is free and does not require any setup. However, it is both the slowest 
+#  and the least accurate as it uses an older model and has a character limit of 100 characters per request. Long 
+#  sentences will be split into multiple requests, and contexts will not be taken into account.
 class OnlineTranslator(Translator):
+    ## Constructor
+    #
+    #  @param outputOption the output format to use
+    #  @param glossary the glossary to use
+    #  @param timeoutWait the time to wait in seconds when a timeout is detected, defaults to 315 seconds
     def __init__(self, outputOption: OutputFormat, glossary: Glossary, timeoutWait: int = 315):
         super().__init__(outputOption, glossary)
         self.timeoutWait = timeoutWait
@@ -32,9 +45,11 @@ class OnlineTranslator(Translator):
         self.driver = webdriver.Chrome(options = options)
         self.initWebsite()
 
+    ## Destructor, closes the browser
     def __del__(self):
         self.driver.quit()
 
+    ## Initializes the website by opening the site then swapping the language to japanese
     def initWebsite(self):
         self.driver.get("https://sugoitranslator.com/")
 
@@ -45,6 +60,10 @@ class OnlineTranslator(Translator):
         swapLanguageButton = self.driver.find_element(By.XPATH, self.swapLanguageButtonXPath)
         swapLanguageButton.click()
 
+    ## Translates a string or a list of strings from japanese to english using the sugoitranslator website and selenium
+    #
+    #  @param japanese the string or list of strings to be translated
+    #  @return the translated string
     def japaneseToEnglish(self, japanese: str | list[str]) -> str:
         if(type(japanese) is list):
             return " ".join([self.japaneseToEnglish(lines) for lines in japanese])
@@ -70,6 +89,11 @@ class OnlineTranslator(Translator):
         
         return outputBox.text
 
+    ## Translates the file and writes to inputFilePath-Translated.txt
+    #
+    #  @param inputFilePath path to the file to be translated
+    #  @exception FileNotFoundError if the file is not found
+    #  @exception Exception if any other error occurs
     def translate(self, inputFilePath: str):
         startTime = perf_counter()
         japaneseLines = TenshiTranslator.Util.TextProcessor.retrieveLines(inputFilePath)
