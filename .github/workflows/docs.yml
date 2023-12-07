@@ -27,6 +27,7 @@ jobs:
       working-directory: .
       run: |
         sphinx-apidoc -o apidoc/ ../TenshiTranslator --separate
+        make html
         
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
