@@ -24,7 +24,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Build Docs
-      working-directory: .
+      working-directory: docs
       run: |
         sphinx-apidoc -o apidoc/ ../TenshiTranslator --separate
         make html
