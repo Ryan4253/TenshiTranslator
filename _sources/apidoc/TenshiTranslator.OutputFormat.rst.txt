@@ -1,0 +1,20 @@
+TenshiTranslator.OutputFormat package
+=====================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   TenshiTranslator.OutputFormat.EnglishOnlyFormat
+   TenshiTranslator.OutputFormat.LineByLineFormat
+   TenshiTranslator.OutputFormat.OutputFormat
+
+Module contents
+---------------
+
+.. automodule:: TenshiTranslator.OutputFormat
+   :members:
+   :undoc-members:
+   :show-inheritance:

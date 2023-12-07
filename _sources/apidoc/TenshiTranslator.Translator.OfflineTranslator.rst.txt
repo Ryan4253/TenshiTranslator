@@ -1,0 +1,7 @@
+TenshiTranslator.Translator.OfflineTranslator module
+====================================================
+
+.. automodule:: TenshiTranslator.Translator.OfflineTranslator
+   :members:
+   :undoc-members:
+   :show-inheritance:

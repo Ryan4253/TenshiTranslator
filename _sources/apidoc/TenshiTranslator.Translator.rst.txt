@@ -1,0 +1,21 @@
+TenshiTranslator.Translator package
+===================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   TenshiTranslator.Translator.BatchTranslator
+   TenshiTranslator.Translator.OfflineTranslator
+   TenshiTranslator.Translator.OnlineTranslator
+   TenshiTranslator.Translator.Translator
+
+Module contents
+---------------
+
+.. automodule:: TenshiTranslator.Translator
+   :members:
+   :undoc-members:
+   :show-inheritance:
