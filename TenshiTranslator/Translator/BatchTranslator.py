@@ -1,6 +1,3 @@
-## @module BatchTranslator
-#  Contains the BatchTranslator class
-
 from TenshiTranslator.Translator.Translator import Translator
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
 from TenshiTranslator.Util.Glossary import Glossary
@@ -13,18 +10,21 @@ import sys
 import subprocess
 import os
 
-## Translator that uses sugoi toolkit's offline translation server. Files are translated in batches through 
-#  http requests, optimization translation time by maximizing GPU utilization. This translator requires sugoi 
-#  toolkit and a Nvidia GPU to be useful, but is magnitudes faster than the other translators. You 
-#  will have to install CUDA and run the setup script to allow the sugoi toolkit to accept batch translation 
-#  requests. This translator is recommended if you have an Nvidia GPU.
 class BatchTranslator(Translator):
-    ## Constructor. Takes around 12 seconds to start the sugoi offline translator server.
-    #
-    #  @param outputOption the output format to use
-    #  @param glossary the glossary to use
-    #  @param sugoiDirectory the path to the sugoi toolkit
-    #  @param batchSize the number of lines to translate per request, defaults to 64
+    """ Translator that send batches to sugoi toolkit's offline translation server.
+    
+    Files are translated in batches through http requests, optimization translation time by maximizing 
+    GPU utilization. This translator requires sugoi toolkit and a Nvidia GPU to be useful, but is magnitudes 
+    faster than the other translators. You will have to install CUDA and run the setup script to allow the 
+    sugoi toolkit to accept batch translation requests. This translator is recommended if you have an Nvidia GPU.
+    The object takes around 12 seconds to initialize, as it starts the sugoi offline translator server.
+    
+    :param outputOption: the output format to use
+    :param glossary: the glossary to use
+    :param sugoiDirectory: the path to the sugoi toolkit
+    :param batchSize: the number of lines to translate per request, defaults to 64
+    """
+
     def __init__(self, outputOption: OutputFormat, glossary: Glossary, sugoiDirectory: str, batchSize: int = 64):
         super().__init__(outputOption, glossary)
         self.batchSize = batchSize
@@ -40,19 +40,22 @@ class BatchTranslator(Translator):
         sleep(12)
         print("BatchTranslator: Server Started", flush=True)
 
-    ## Destructor, stops the sugoi offline translator server
     def __del__(self):
+        """ Destructor, stops the sugoi offline translator server    
+        """
+
         print("BatchTranslator: Stopping Server...", flush=True)
         self.server.kill()
         sleep(3)
         print("BatchTranslator: Server Stopped", flush=True)
 
-    
-    ## Translates a batch from japanese to english using the sugoi offline translator server
-    # 
-    #  @param batch of japanese lines to be translated
-    #  @return the translated batch
     def sendTranslationRequest(self, batch: list[str]) -> list[str]:
+        """ Translates a batch from japanese to english using the sugoi offline translator server
+
+        :param batch: list of japanese lines to be translated
+        :return: the translated batch
+        """
+
         data = {'message': 'batch translate', 'content': batch}
         headers = {'content-type': 'application/json'}
         response = requests.post(f'http://{self.host}/', data=json.dumps(data), headers=headers)
@@ -63,12 +66,14 @@ class BatchTranslator(Translator):
         
         return response.json()
 
-    ## Translates a file and writes to inputFilePath-Translated.txt
-    #
-    #  @param inputFilePath path to the file to be translated
-    #  @exception FileNotFoundError if the file is not found
-    #  @exception Exception if any other error occurs
     def translate(self, inputFilePath: str):
+        """ Translates a file and writes to inputFilePath-Translated.txt
+        
+        :param inputFilePath: path to the file to be translated
+        :raises: FileNotFoundError if the file is not found
+        :raises: Exception if any other error occurs
+        """
+
         startTime = perf_counter()
         japaneseLines = TenshiTranslator.Util.TextProcessor.retrieveLines(inputFilePath)
         englishLines = []

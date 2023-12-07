@@ -1,5 +1,6 @@
-## @module api
-#  Contains flask server api for TenshiTranslator
+"""
+Contains the flask server api for TenshiTranslator
+"""
 
 from TenshiTranslator.Translator.OnlineTranslator import OnlineTranslator
 from TenshiTranslator.Translator.BatchTranslator import BatchTranslator
@@ -26,21 +27,19 @@ HTTPConnection.default_socket_options = (
 
 app = Flask("TenshiTranslatorAPI")
 
-## Processes a translation request. the request is a json file with the following parameters  
-# 'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use  
-# 'OutputFormat': 'LineByLine' | 'EnglishOnly', the output format to use  
-# 'GlossaryNames': file path to the glossary names file  
-# 'GlossaryCorrections': file path to the glossary corrections file  
-# 'Files': list of file paths to translate  
-# 'SugoiDirectory': path to the sugoi directory, required if Translator is 'Batch' or 'Offline'  
-# 'BatchSize': number of lines to translate at once, required if Translator is 'Batch'  
-# 'TimeoutWait': number of seconds to wait before resuming translation after a timeout, required if Translator is 'Online'  
 @app.route("/", methods=['POST'])
 def process():
-    """Processes a translation request. the request is a json file with the following parameters
+    """Processes a translation request. 
     
-    'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use  
-    
+    The request is a json file with the following parameters: \n
+    - 'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use \n
+    - 'OutputFormat': 'LineByLine' | 'EnglishOnly', the output format to use \n
+    - 'GlossaryNames': file path to the glossary names file \n
+    - 'GlossaryCorrections': file path to the glossary corrections file \n
+    - 'Files': list of file paths to translate \n
+    - 'SugoiDirectory': path to the sugoi directory, required if Translator is 'Batch' or 'Offline' \n
+    - 'BatchSize': number of lines to translate at once, required if Translator is 'Batch' \n
+    - 'TimeoutWait': number of seconds to wait before resuming translation after a timeout, required if Translator is 'Online' \n
     """
     
     data = request.get_json()
@@ -64,6 +63,8 @@ def process():
     
     return Response("Complete", status=200)
 
-## Starts the server
 def startServer():
+    """Starts the flask server on port 6000
+    """
+    
     app.run(host='127.0.0.1', port=6000)
