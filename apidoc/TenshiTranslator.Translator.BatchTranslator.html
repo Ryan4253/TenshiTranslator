@@ -132,15 +132,52 @@
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.BatchTranslator.BatchTranslator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.BatchTranslator.</span></span><span class="sig-name descname"><span class="pre">BatchTranslator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">glossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Util.Glossary.html#TenshiTranslator.Util.Glossary.Glossary" title="TenshiTranslator.Util.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sugoiDirectory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.BatchTranslator.BatchTranslator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="TenshiTranslator.Translator.Translator.html#TenshiTranslator.Translator.Translator.Translator" title="TenshiTranslator.Translator.Translator.Translator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translator</span></code></a></p>
+<p>Translator that send batches to sugoi toolkit’s offline translation server.</p>
+<p>Files are translated in batches through http requests, optimization translation time by maximizing
+GPU utilization. This translator requires sugoi toolkit and a Nvidia GPU to be useful, but is magnitudes
+faster than the other translators. You will have to install CUDA and run the setup script to allow the
+sugoi toolkit to accept batch translation requests. This translator is recommended if you have an Nvidia GPU.
+The object takes around 12 seconds to initialize, as it starts the sugoi offline translator server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outputOption</strong> – the output format to use</p></li>
+<li><p><strong>glossary</strong> – the glossary to use</p></li>
+<li><p><strong>sugoiDirectory</strong> – the path to the sugoi toolkit</p></li>
+<li><p><strong>batchSize</strong> – the number of lines to translate per request, defaults to 64</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.BatchTranslator.BatchTranslator.sendTranslationRequest">
 <span class="sig-name descname"><span class="pre">sendTranslationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#TenshiTranslator.Translator.BatchTranslator.BatchTranslator.sendTranslationRequest" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Translates a batch from japanese to english using the sugoi offline translator server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch</strong> – list of japanese lines to be translated</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the translated batch</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.BatchTranslator.BatchTranslator.translate">
 <span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.BatchTranslator.BatchTranslator.translate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Translates a file and writes to inputFilePath-Translated.txt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the file to be translated</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>FileNotFoundError if the file is not found</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Exception if any other error occurs</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

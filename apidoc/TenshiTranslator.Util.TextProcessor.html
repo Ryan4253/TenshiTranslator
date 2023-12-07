@@ -128,40 +128,112 @@
             
   <section id="module-TenshiTranslator.Util.TextProcessor">
 <span id="tenshitranslator-util-textprocessor-module"></span><h1>TenshiTranslator.Util.TextProcessor module<a class="headerlink" href="#module-TenshiTranslator.Util.TextProcessor" title="Link to this heading">¶</a></h1>
+<p>Contains functions that process text, such as removing indent, splitting sentences, etc.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.isEmptyLine">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">isEmptyLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.isEmptyLine" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if a line is empty</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> – line to be checked</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘True’ if the line is empty, ‘False’ otherwise</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.isTimeoutMessage">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">isTimeoutMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.isTimeoutMessage" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if the line is a timeout message from the Sugoi Translator site</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> – line to be checked</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘True’ if the line is a timeout message, ‘False’ otherwise</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.makeOutputFilePath">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">makeOutputFilePath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.makeOutputFilePath" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Builds the output file path from the input file path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the desired file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>path of the output file, in format of &lt;input file name&gt;-Translated.&lt;extension&gt;</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.noJapaneseCharacters">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">noJapaneseCharacters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.noJapaneseCharacters" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if string contains no Japanese characters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> – line to be checked</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘True’ if the line contains no Japanese characters, ‘False’ otherwise</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.removeIndent">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">removeIndent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.removeIndent" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Removes indent from a sentence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> – line to be modified</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>line without indent</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.retrieveLines">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">retrieveLines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.retrieveLines" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Retrieves every line from a .txt file. The code terminates if the file is not found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the desired file</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>FileNotFoundError if the file is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of lines from the file</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="TenshiTranslator.Util.TextProcessor.splitToSentence">
 <span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.TextProcessor.</span></span><span class="sig-name descname"><span class="pre">splitToSentence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxLength</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.TextProcessor.splitToSentence" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>If the japanese paragraph is longer than the max allowed length, splits it into smaller sentences.</p>
+<p>The sentences are split by the period character. This is used to comply with Sugoi translator site’s
+100 character limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> – lline to be split</p></li>
+<li><p><strong>maxLength</strong> – max allowed length of a sentence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of sentences</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

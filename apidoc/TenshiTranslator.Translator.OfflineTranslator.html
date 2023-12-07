@@ -132,15 +132,50 @@
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.OfflineTranslator.</span></span><span class="sig-name descname"><span class="pre">OfflineTranslator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">glossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Util.Glossary.html#TenshiTranslator.Util.Glossary.Glossary" title="TenshiTranslator.Util.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sugoiDirectory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="TenshiTranslator.Translator.Translator.html#TenshiTranslator.Translator.Translator.Translator" title="TenshiTranslator.Translator.Translator.Translator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translator</span></code></a></p>
+<p>Translator that uses sugoi toolkit’s offline translation server.</p>
+<p>Files are translated line by line through http requests. This translator requires sugoi toolkit but is faster than the online
+translator. It is also more accurate as it uses a newer model and has no character limits. The speed of this translator is
+dependent on your computer’s hardware, and is generally recommended if you don’t have an Nvidia GPU. The object takes around
+12 seconds to initialize, as it starts the sugoi offline translator server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outputOption</strong> – the output format to use</p></li>
+<li><p><strong>glossary</strong> – the glossary to use</p></li>
+<li><p><strong>sugoiDirectory</strong> – the path to the sugoi toolkit</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator.sendTranslationRequest">
 <span class="sig-name descname"><span class="pre">sendTranslationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">japanese</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator.sendTranslationRequest" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Translates a string from japanese to english using the sugoi offline translator server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>japanese</strong> – the string to be translated</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the translated string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator.translate">
 <span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.OfflineTranslator.OfflineTranslator.translate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Translates a file and writes to inputFilePath-Translated.txt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the file to be translated</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>FileNotFoundError if the file is not found</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Exception if any other error occurs</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
