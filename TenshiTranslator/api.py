@@ -26,17 +26,23 @@ HTTPConnection.default_socket_options = (
 
 app = Flask("TenshiTranslatorAPI")
 
-## Processes a translation request. the request is a json file with the following parameters
-# 'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use
-# 'OutputFormat': 'LineByLine' | 'EnglishOnly', the output format to use
-# 'GlossaryNames': file path to the glossary names file
-# 'GlossaryCorrections': file path to the glossary corrections file
-# 'Files': list of file paths to translate
-# 'SugoiDirectory': path to the sugoi directory, required if Translator is 'Batch' or 'Offline'
-# 'BatchSize': number of lines to translate at once, required if Translator is 'Batch'
-# 'TimeoutWait': number of seconds to wait before resuming translation after a timeout, required if Translator is 'Online'
+## Processes a translation request. the request is a json file with the following parameters  
+# 'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use  
+# 'OutputFormat': 'LineByLine' | 'EnglishOnly', the output format to use  
+# 'GlossaryNames': file path to the glossary names file  
+# 'GlossaryCorrections': file path to the glossary corrections file  
+# 'Files': list of file paths to translate  
+# 'SugoiDirectory': path to the sugoi directory, required if Translator is 'Batch' or 'Offline'  
+# 'BatchSize': number of lines to translate at once, required if Translator is 'Batch'  
+# 'TimeoutWait': number of seconds to wait before resuming translation after a timeout, required if Translator is 'Online'  
 @app.route("/", methods=['POST'])
 def process():
+    """Processes a translation request. the request is a json file with the following parameters
+    
+    'Translator': 'Online' | 'Offline' | 'Batch', the type of translator to use  
+    
+    """
+    
     data = request.get_json()
 
     glossary = Glossary(data.get('GlossaryNames'), data.get('GlossaryCorrections'))

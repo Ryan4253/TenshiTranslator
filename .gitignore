@@ -4,6 +4,6 @@ __pycache__/
 build/
 Backend.spec
 .pytest_cache
-.coverage
-.coverage
-.coverage
+*.whl
+*.tar.gz
+docs/source
