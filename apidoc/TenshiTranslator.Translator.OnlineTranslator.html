@@ -126,8 +126,65 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="tenshitranslator-translator-onlinetranslator-module">
-<h1>TenshiTranslator.Translator.OnlineTranslator module<a class="headerlink" href="#tenshitranslator-translator-onlinetranslator-module" title="Link to this heading">¶</a></h1>
+  <section id="module-TenshiTranslator.Translator.OnlineTranslator">
+<span id="tenshitranslator-translator-onlinetranslator-module"></span><h1>TenshiTranslator.Translator.OnlineTranslator module<a class="headerlink" href="#module-TenshiTranslator.Translator.OnlineTranslator" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.OnlineTranslator.</span></span><span class="sig-name descname"><span class="pre">OnlineTranslator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">glossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Util.Glossary.html#TenshiTranslator.Util.Glossary.Glossary" title="TenshiTranslator.Util.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeoutWait</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">315</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TenshiTranslator.Translator.Translator.html#TenshiTranslator.Translator.Translator.Translator" title="TenshiTranslator.Translator.Translator.Translator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translator</span></code></a></p>
+<p>Translator that translates by automating sugoitranslator.com using selenium</p>
+<p>As sugoi translator has a rate limit, this translator automatically waits for the timeout to end before resuming.
+The advantage of this translator is that it is free and does not require any setup. However, it is both the slowest
+and the least accurate as it uses an older model and has a character limit of 100 characters per request. Long
+sentences will be split into multiple requests, and contexts will not be taken into account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outputOption</strong> – the output format to use</p></li>
+<li><p><strong>glossary</strong> – the glossary to use</p></li>
+<li><p><strong>timeoutWait</strong> – the time to wait in seconds when a timeout is detected, defaults to 315 seconds</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.initWebsite">
+<span class="sig-name descname"><span class="pre">initWebsite</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.initWebsite" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes the website by opening the site then swapping the language to japanese</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.japaneseToEnglish">
+<span class="sig-name descname"><span class="pre">japaneseToEnglish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">japanese</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.japaneseToEnglish" title="Link to this definition">¶</a></dt>
+<dd><p>Translates a string or a list of strings from japanese to english using the sugoitranslator website and selenium</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>japanese</strong> – the string or list of strings to be translated</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the translated string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.translate" title="Link to this definition">¶</a></dt>
+<dd><p>Translates a file and writes to inputFilePath-Translated.txt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the file to be translated</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>FileNotFoundError if the file is not found</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Exception if any other error occurs</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -135,6 +192,28 @@
           </div>
         </div>
       </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">TenshiTranslator.Translator.OnlineTranslator module</a><ul>
+<li><a class="reference internal" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator"><code class="docutils literal notranslate"><span class="pre">OnlineTranslator</span></code></a><ul>
+<li><a class="reference internal" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.initWebsite"><code class="docutils literal notranslate"><span class="pre">OnlineTranslator.initWebsite()</span></code></a></li>
+<li><a class="reference internal" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.japaneseToEnglish"><code class="docutils literal notranslate"><span class="pre">OnlineTranslator.japaneseToEnglish()</span></code></a></li>
+<li><a class="reference internal" href="#TenshiTranslator.Translator.OnlineTranslator.OnlineTranslator.translate"><code class="docutils literal notranslate"><span class="pre">OnlineTranslator.translate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
     
 
       <div class="clearer"></div>
