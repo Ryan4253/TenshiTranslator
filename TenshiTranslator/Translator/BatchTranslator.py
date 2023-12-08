@@ -13,7 +13,7 @@ import os
 class BatchTranslator(Translator):
     """ Translator that send batches to sugoi toolkit's offline translation server.
     
-    Files are translated in batches through http requests, optimization translation time by maximizing 
+    Files are translated in batches through http requests, optimizating translation time by maximizing 
     GPU utilization. This translator requires sugoi toolkit and a Nvidia GPU to be useful, but is magnitudes 
     faster than the other translators. You will have to install CUDA and run the setup script to allow the 
     sugoi toolkit to accept batch translation requests. This translator is recommended if you have an Nvidia GPU.

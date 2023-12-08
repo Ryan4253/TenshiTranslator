@@ -20,8 +20,11 @@ jobs:
         access_token: ${{ secrets.REPO_TOKEN }}
 
     - name: Install Dependencies
-      working-directory: docs
-      run: pip install -r requirements.txt
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        cd docs
+        pip install -r requirements.txt
 
     - name: Build Docs
       working-directory: docs
