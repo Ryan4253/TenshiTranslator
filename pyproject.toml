@@ -1,12 +1,12 @@
 [project]
 name = "TenshiTranslator"
-version = "0.0.1"
+version = "1.0.0"
 authors = [
-  { name="Ryan Liao", email="ryan.liao0305@gmail.com" },
+  { name="Ryan4253", email="ryan.liao0305@gmail.com" },
 ]
-description = "Novel Translation Utility using Sugoi Translator"
+description = "Novel Translation utility using Sugoi Translator"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",

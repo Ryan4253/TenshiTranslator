@@ -2,6 +2,10 @@
 Contains the flask server api for TenshiTranslator
 """
 
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from TenshiTranslator.Translator.OnlineTranslator import OnlineTranslator
 from TenshiTranslator.Translator.BatchTranslator import BatchTranslator
 from TenshiTranslator.Translator.OfflineTranslator import OfflineTranslator
@@ -68,3 +72,6 @@ def startServer():
     """
     
     app.run(host='127.0.0.1', port=6000)
+
+if __name__ == "__main__":
+    startServer()
