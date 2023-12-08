@@ -1,36 +1,38 @@
+[![Docs](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/docs.yml/badge.svg)](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/docs.yml)
 [![Unit Test](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/test.yml/badge.svg)](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/Ryan4253/TenshiTranslator/graph/badge.svg?token=G04BIXZ45E)](https://codecov.io/gh/Ryan4253/TenshiTranslator)
 
-#TenshiTranslator
-This automatically translates a file with Japanese into English line by line using the [Sugoi Translator](https://sugoitranslator.com/). This is used by the Otonari no Tenshi-sama fan translation team to generate preliminary machine translations for new novels.
+# TenshiTranslator
+This package provides translators that translate files from Japanese into English into various formats using [Sugoi Translator](https://sugoitranslator.com/). This is used by the Otonari no Tenshi-sama fan translation team to generate preliminary machine translations for new novels.
 
 ## Translator Options
 
 ### Online Translator
-
+This translator automates [sugoitranslator.com](sugoitranslator.com) using selenium. This translator does not require any setup. However, it is both the slowest and the least accurate as it uses an older model and has a character limit of 100 characters per request. Long sentences will be split into multiple requests, and contexts will not be taken into account.
+    
 ### Offline Translator
+This translator uses sugoi toolkit’s offline translation server. Files are translated line by line through http requests. This translator requires sugoi toolkit but is faster than the online translator. It is also more accurate as it uses a newer model and has no character limits. The speed of this translator is dependent on your computer’s hardware, and is generally recommended if you don’t have an Nvidia GPU.
 
 ### Batch Translator
+This translator uses sugoi toolkit’s offline translation server. Files are translated in batches through http requests, optimizating translation time by maximizing GPU utilization. This translator requires sugoi toolkit and a Nvidia GPU to be useful, but is magnitudes faster than the other translators. You will have to install CUDA and run the setup script to allow the sugoi toolkit to accept batch translation requests. This translator is recommended if you have an Nvidia GPU.
 
 ## Features
-1. Multiple format support
-2. High level glossary
-3. Batch Translation
-4. GUI Support
+### Multiple format support  
+The translator allows you to output translations either in an all english format or in an japanese and english alternate format that speeds up translation checking. The package also provide abstraction over output formats so you are free to implement your own formats.
 
+### High level glossary  
+You can specify translations for specific phrases and also apply corrections to the translated text to improve translation accuracy. This is commonly used for names and other jargons that may not be translated correctly.
+  
 ## Requirements
+To run the program, you need Python >= 3.10  
+To use the offline and batch translator, you have to download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
+To use the batch translator, you need a computer with a Nvidia GPU, [CUDA](https://developer.nvidia.com/cuda-downloads), then download and run ```SugoiCudaInstall.bash``` in ```scripts/```
 
-## Dependencies
-selenium - automatically controls website given commands
-chromedriver-autoinstaller - automatically installs driver for chromium for selenium
-requests - https request processing for backend communication
-Flask - backend server setup to communicate with frontend
+## Installation
+You can install the package directly using ```pip install TenshiTranslator```  
+Alternatively, clone the repository
 
-## How to use
-1. Download this package using ```pip install TenshiTranslator```
-2. Prepare input file.  
-The input file should be lines of Japanese with paragraphs separated with a blank line. Usually running OCR will give the desired format. Then, place the file in the same folder as the translator.  
-![image](https://user-images.githubusercontent.com/71594512/212532224-89023b94-ec7a-4b4c-8fee-dceb2d1f6187.png)
-3. Run the code, and switch to the tab with Sugoi TL. The translation process should run until the entire file is translated.
+## Getting Started
+Visit the documentation [here](https://ryan4253.github.io/TenshiTranslator/)
 
 ## Benchmarks
