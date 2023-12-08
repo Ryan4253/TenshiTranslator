@@ -25,8 +25,8 @@ You can specify translations for specific phrases and also apply corrections to 
   
 ## Requirements
 To run the program, you need Python >= 3.10  
-To use the offline and batch translator, you have to download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
-To use the batch translator, you need a computer with a Nvidia GPU, [CUDA](https://developer.nvidia.com/cuda-downloads), then download and run ```SugoiCudaInstall.bash``` in ```scripts/```
+To use the offline and batch translator, you need Windows, and have to download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
+To use the batch translator, you need a computer with a Nvidia GPU, [CUDA](https://developer.nvidia.com/cuda-downloads), then download and run ```sugoiCudaInstall.ps1``` in ```scripts/```
 
 ## Installation
 You can install the package directly using ```pip install TenshiTranslator```  
