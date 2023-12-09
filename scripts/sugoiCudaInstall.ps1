@@ -1,6 +1,6 @@
-$curDir = $PWD
+$scriptsDir = $PWD
 
-Function Get-Folder($initialDirectory="") {
+Function Select-Folder($initialDirectory="") {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
 
     $foldername = New-Object System.Windows.Forms.FolderBrowserDialog
@@ -15,33 +15,39 @@ Function Get-Folder($initialDirectory="") {
     return $folder
 }
 
-Write-Host "Please select the install folder (Check new window, might be in the background)" -ForegroundColor Yellow
-$ocrfolder = Get-Folder
-$installtest = "$ocrfolder\Code\Sugoi-ASMR-Translator.bat";
+# Select Sugoi Toolkit folder
+Write-Host "Please select the Sugoi Toolkit folder  (check background for popups)" -ForegroundColor Yellow
+$sugoi = Select-Folder
+$sugoiCheck = "$sugoi/Sugoi-Toolkit (click here).bat";
 
-$Env:PATH = "$ocrfolder\Code\Power-Source\Python39;$ocrfolder\Code\Power-Source\Python39\Scripts;$Env:PATH"
-
-if (-not(Test-Path -Path $installtest -PathType Leaf)) {
-    Write-Host "Could not find Sugoi-Toolkit (click here).bat, not a sugoi 2.0 install folder?" -ForegroundColor Red
+# Folder check
+if (-not(Test-Path -Path $sugoiCheck -PathType Leaf)) {
+    Write-Host "Could not find Sugoi-Toolkit (click here).bat, incorrect folder selected" -ForegroundColor Red
     return;
 }
 
+# Install pytorch
 Write-Host "Installing Pytorch" -ForegroundColor Green
-Set-Location $ocrfolder
-cd Code\Power-Source\Python39
+Set-Location $sugoi
+Set-Location Code/Power-Source/Python39
 ./python -m pip install pip
-cd Scripts
+Set-Location Scripts
 ./pip3 install --upgrade torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118
 
-Write-Host "Downgrading numpy (fairseq version is to old)" -ForegroundColor Green
+# Downgrade Numpy
+Write-Host "Downgrading Numpy" -ForegroundColor Green
 ./pip3 install --upgrade --no-deps numpy==1.23.0
 
-Write-Host "Installing: Multiline Cuda Script" -ForegroundColor Green
-Set-Location $curDir
-$ccc = "$curDir\Files\flaskServer-multiline.py";
-$ttt = "$ocrfolder\code\backendServer\Program-Backend\Sugoi-Japanese-Translator\offlineTranslation\fairseq\flaskServer.py"
-cp "$ccc" "$ttt"
+# Install flask server
+Write-Host "Installing Updated Flask Server" -ForegroundColor Green
+Set-Location $scriptsDir
+$file = "$scriptsDir/assets/flaskServer.py";
+$target = "$sugoi/code/backendServer/Program-Backend/Sugoi-Japanese-Translator/offlineTranslation/fairseq/flaskServer.py"
+Copy-Item -Path "$file" -Destination "$target"
 
-Write-Host "" -ForegroundColor Green
-Write-Host "Installation done." -ForegroundColor Green
+# Completion
+Write-Host "Installation complete." -ForegroundColor Green
 Read-Host -Prompt "Press enter to exit."
+
+# Return to scripts directory
+Set-Location $scriptsDir
