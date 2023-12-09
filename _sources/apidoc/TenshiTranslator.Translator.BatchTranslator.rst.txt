@@ -1,7 +1,0 @@
-TenshiTranslator.Translator.BatchTranslator module
-==================================================
-
-.. automodule:: TenshiTranslator.Translator.BatchTranslator
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,7 +1,0 @@
-TenshiTranslator
-================
-
-.. toctree::
-   :maxdepth: 4
-
-   TenshiTranslator

@@ -1,7 +1,0 @@
-TenshiTranslator.OutputFormat.EnglishOnlyFormat module
-======================================================
-
-.. automodule:: TenshiTranslator.OutputFormat.EnglishOnlyFormat
-   :members:
-   :undoc-members:
-   :show-inheritance:
