@@ -1,6 +1,7 @@
 [![Docs](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/docs.yml/badge.svg)](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/docs.yml)
 [![Unit Test](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/test.yml/badge.svg)](https://github.com/Ryan4253/TenshiTranslator/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/Ryan4253/TenshiTranslator/graph/badge.svg?token=G04BIXZ45E)](https://codecov.io/gh/Ryan4253/TenshiTranslator)
+[![PyPi](https://img.shields.io/pypi/v/TenshiTranslator)](https://pypi.org/project/TenshiTranslator/)
 
 # TenshiTranslator
 This package provides translators that translate files from Japanese into English into various formats using [Sugoi Translator](https://sugoitranslator.com/). This is used by the Otonari no Tenshi-sama fan translation team to generate preliminary machine translations for new novels.
