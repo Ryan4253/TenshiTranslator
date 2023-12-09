@@ -1,10 +1,26 @@
+# data files
 sources/
-__pycache__/
-.vscode/
-build/
-Backend.spec
-.pytest_cache
-*.whl
-*.tar.gz
-docs/source
 Correction/
+
+# python files
+__pycache__/
+
+# vscode
+.vscode/
+
+# test
+.pytest_cache
+.coverage
+
+# docs
+docs/build
+docs/apidocs
+docs/html
+
+# package
+dist/
+
+# executable
+build/
+api.spec
+

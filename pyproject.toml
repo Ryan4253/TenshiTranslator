@@ -1,22 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "TenshiTranslator"
 version = "1.0.0"
-authors = [
-  { name="Ryan4253", email="ryan.liao0305@gmail.com" },
-]
+requires-python = ">=3.10"
+authors = [{ name="Ryan4253", email="ryan.liao0305@gmail.com" }]
 description = "Novel Translation utility using Sugoi Translator"
 readme = "README.md"
-requires-python = ">=3.10"
+license = {file="LICENSE"}
+
+dependencies = [
+  "requests",
+  "selenium",
+  "chromedriver-autoinstaller",
+  "Flask",
+]
+
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Flask",
+    "Framework :: Pytest",
+    "Framework :: Sphinx",
+    "Topic :: Text Processing :: Linguistic"
 ]
 
 [project.urls]
 Homepage = "https://github.com/Ryan4253/TenshiTranslator"
 Issues = "https://github.com/Ryan4253/TenshiTranslator/issues"
+documentation = "https://ryan4253.github.io/TenshiTranslator/"
 
-[build-system]
-requires = ["hatchling", "requests", "selenium", "chromedriver-autoinstaller", "Flask"]
-build-backend = "hatchling.build"
+[tool.hatch.build]
+include = [
+  "TenshiTranslator/*",
+]
