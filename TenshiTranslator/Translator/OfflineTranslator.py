@@ -42,7 +42,9 @@ class OfflineTranslator(Translator):
         """
 
         print("OfflineTranslator: Stopping Server...", flush=True)
-        self.server.kill()
+        headers = {'content-type': 'application/json'}
+        data = {'message': 'close server', 'content': 1}
+        requests.post(f'http://{self.host}/', data=json.dumps(data), headers=headers)
         sleep(3)
         print("OfflineTranslator: Server Stopped", flush=True)
 

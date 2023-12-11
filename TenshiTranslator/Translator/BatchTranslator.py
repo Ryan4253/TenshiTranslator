@@ -45,7 +45,9 @@ class BatchTranslator(Translator):
         """
 
         print("BatchTranslator: Stopping Server...", flush=True)
-        self.server.kill()
+        headers = {'content-type': 'application/json'}
+        data = {'message': 'close server', 'content': 1}
+        requests.post(f'http://{self.host}/', data=json.dumps(data), headers=headers)
         sleep(3)
         print("BatchTranslator: Server Stopped", flush=True)
 
