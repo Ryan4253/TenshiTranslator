@@ -19,7 +19,7 @@ Function Select-Folder($initialDirectory="") {
 Write-Host "Please select the Sugoi Toolkit folder  (check background for popups)" -ForegroundColor Yellow
 $sugoi = Select-Folder
 $sugoiCheck = "$sugoi/Sugoi-Toolkit (click here).bat";
-
+Write-Host $sugoi
 # Folder check
 if (-not(Test-Path -Path $sugoiCheck -PathType Leaf)) {
     Write-Host "Could not find Sugoi-Toolkit (click here).bat, incorrect folder selected" -ForegroundColor Red
@@ -28,11 +28,11 @@ if (-not(Test-Path -Path $sugoiCheck -PathType Leaf)) {
 
 # Install pytorch
 Write-Host "Installing Pytorch" -ForegroundColor Green
-Set-Location $sugoi
+
 Set-Location Code/Power-Source/Python39
-./python -m pip install pip
+./python -m pip install --force-reinstall pip
 Set-Location Scripts
-./pip3 install --upgrade torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118
+./pip3 install --upgrade --force-reinstall torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118
 
 # Downgrade Numpy
 Write-Host "Downgrading Numpy" -ForegroundColor Green
