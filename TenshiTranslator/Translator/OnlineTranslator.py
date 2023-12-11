@@ -92,6 +92,7 @@ class OnlineTranslator(Translator):
             sleep(self.timeoutWait)
             return self.japaneseToEnglish(japanese)
         
+        sleep(5)
         return outputBox.text
 
     def translate(self, inputFilePath: str):
@@ -117,7 +118,7 @@ class OnlineTranslator(Translator):
                 japanese = self.glossary.replaceNames(japanese)
                 japanese = TenshiTranslator.Util.TextProcessor.removeIndent(japanese)
 
-                english = self.japaneseToEnglish(TenshiTranslator.Util.TextProcessor.splitToSentence(japanese, 100))
+                english = self.japaneseToEnglish(TenshiTranslator.Util.TextProcessor.splitToSentence(japanese, 150))
                 english = self.glossary.applyCorrections(english)
                 englishLines.append(english)
     
