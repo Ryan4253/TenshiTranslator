@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/TenshiTranslator.svg)](https://badge.fury.io/py/TenshiTranslator)
 
 # TenshiTranslator
-Sugoi Toolkit's [Sugoi Translator](https://sugoitoolkit.com/) is very effective for ACG media translation as the model is trained with data from the same medium. However, the project lacks automation support as all the features require manual control, which makes large file translation incredibly daunting. This project implements automation utility that interfaces with the translator to both automate the translation process and increase the transaltion accuracy. This project has since then been adopted by over 10 novel series to generate preliminary machine translations for new novels.  
+Sugoi Toolkit's [Sugoi Translator](https://sugoitoolkit.com/) is very effective for ACG media translation as the model is trained with data from the same medium. However, the project lacks automation support as all the features require manual control, which makes large file translation incredibly daunting. This project implements automation utility that interfaces with the translator to both automate the translation process and increase the translation accuracy. This project has since then been adopted by over 10 novel series to generate preliminary machine translations for new novels.  
 
 ![project](https://github.com/Ryan4253/TenshiTranslator/assets/71594512/263efe3b-5062-4ec2-961e-943658f54ec7)  
 
