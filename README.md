@@ -10,7 +10,8 @@ Sugoi Toolkit's [Sugoi Translator](https://sugoitoolkit.com/) is very effective 
 
 
 ## Getting Started
-Visit the documentation [here](https://ryan4253.github.io/TenshiTranslator/)
+You can install the project using ```pip install TenshiTranslator```  
+For more information, visit the documentation [here](https://ryan4253.github.io/TenshiTranslator/)
 
 ## Translator Options
 
