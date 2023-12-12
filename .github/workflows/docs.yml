@@ -36,6 +36,7 @@ jobs:
       run: |
         sphinx-apidoc -o apidoc/ ../TenshiTranslator --separate
         make html
+        cp build\html ..\docs -r
         
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
