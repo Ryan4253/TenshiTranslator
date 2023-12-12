@@ -1,0 +1,7 @@
+TenshiTranslator.Util.TextProcessor module
+==========================================
+
+.. automodule:: TenshiTranslator.Util.TextProcessor
+   :members:
+   :undoc-members:
+   :show-inheritance:

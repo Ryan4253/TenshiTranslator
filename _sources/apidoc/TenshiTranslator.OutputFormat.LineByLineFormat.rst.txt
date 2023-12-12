@@ -1,0 +1,7 @@
+TenshiTranslator.OutputFormat.LineByLineFormat module
+=====================================================
+
+.. automodule:: TenshiTranslator.OutputFormat.LineByLineFormat
+   :members:
+   :undoc-members:
+   :show-inheritance:
