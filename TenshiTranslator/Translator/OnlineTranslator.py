@@ -118,6 +118,7 @@ class OnlineTranslator(Translator):
                 japanese = self.glossary.replaceNames(japanese)
                 japanese = TenshiTranslator.Util.TextProcessor.removeIndent(japanese)
 
+                # Sugoi web translator has a character limit of 150 characters per request
                 english = self.japaneseToEnglish(TenshiTranslator.Util.TextProcessor.splitToSentence(japanese, 150))
                 english = self.glossary.applyCorrections(english)
                 englishLines.append(english)
