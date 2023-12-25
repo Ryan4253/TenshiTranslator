@@ -15,7 +15,6 @@ dependencies = [
   "requests",
   "selenium",
   "chromedriver-autoinstaller",
-  "Flask",
 ]
 
 classifiers = [
@@ -23,7 +22,6 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Operating System :: Microsoft :: Windows",
     "Development Status :: 5 - Production/Stable",
-    "Framework :: Flask",
     "Framework :: Pytest",
     "Framework :: Sphinx",
     "Topic :: Text Processing :: Linguistic"
@@ -37,4 +35,8 @@ documentation = "https://ryan4253.github.io/TenshiTranslator/"
 [tool.hatch.build]
 include = [
   "TenshiTranslator/*",
+]
+
+exclude = [
+  "TenshiTranslator/Backend.py"
 ]
