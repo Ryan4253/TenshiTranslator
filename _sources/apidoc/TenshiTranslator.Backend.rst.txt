@@ -1,0 +1,7 @@
+TenshiTranslator.Backend module
+===============================
+
+.. automodule:: TenshiTranslator.Backend
+   :members:
+   :undoc-members:
+   :show-inheritance:

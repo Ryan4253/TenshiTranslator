@@ -17,7 +17,7 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   TenshiTranslator.api
+   TenshiTranslator.Backend
 
 Module contents
 ---------------

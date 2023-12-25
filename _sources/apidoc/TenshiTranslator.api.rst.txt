@@ -1,7 +1,0 @@
-TenshiTranslator.api module
-===========================
-
-.. automodule:: TenshiTranslator.api
-   :members:
-   :undoc-members:
-   :show-inheritance:
