@@ -11,14 +11,6 @@ Subpackages
    TenshiTranslator.Translator
    TenshiTranslator.Util
 
-Submodules
-----------
-
-.. toctree::
-   :maxdepth: 4
-
-   TenshiTranslator.Backend
-
 Module contents
 ---------------
 
