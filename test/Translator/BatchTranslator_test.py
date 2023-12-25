@@ -11,7 +11,7 @@ from TenshiTranslator.Util.TextProcessor import retrieveLines
 @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is not None, reason="Test doesn't work on Github Actions.")
 def test_BatchTranslator():
     glossary = Glossary("test/assets/SampleNames.csv", "test/assets/SampleCorrections.csv")
-    translator = BatchTranslator(LineByLineFormat(), glossary, "C:\\Users\\ryanl\\Documents\\Apps\\Sugoi-Translator-Toolkit-V6.0-Anniversary")
+    translator = BatchTranslator(LineByLineFormat(), glossary, "C:\\Users\\ryanl\\Documents\\Apps\\Sugoi-Translator-Toolkit-6.0")
     translator.translate("test/assets/SampleInput.txt")
 
     expected = retrieveLines("test/assets/SampleBatchOutput.txt")
