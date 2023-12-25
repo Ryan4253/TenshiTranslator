@@ -22,5 +22,5 @@ dist/
 
 # executable
 build/
-api.spec
+Backend.spec
 

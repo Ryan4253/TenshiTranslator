@@ -8,7 +8,7 @@ pip install -r requirements.txt
 
 # Run tests
 set-location ..
-pytest --cov=TenshiTranslator --cov-report=xml test/
+pytest --cov-config=.coveragerc --cov=TenshiTranslator --cov-report=xml test/
 
 # Remove cache
 Remove-Item -Recurse .pytest_cache

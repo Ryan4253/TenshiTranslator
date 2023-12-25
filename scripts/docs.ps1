@@ -7,12 +7,10 @@ set-location docs
 pip install -r requirements.txt
 
 # Remove old docs
-Remove-Item -Recurse build
-Remove-Item -Recurse apidocs
 Remove-Item -Recurse html
 
 # Build docs
-sphinx-apidoc -o apidocs ../TenshiTranslator --separate
+sphinx-apidoc -o apidocs ../TenshiTranslator ../TenshiTranslator/Backend.py --separate
 make html
 
 # Extract docs
