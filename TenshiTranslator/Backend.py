@@ -23,7 +23,7 @@ parser.add_argument('GlossaryNames', type=directory, help='File path to the glos
 parser.add_argument('GlossaryCorrections', type=directory, help='File path to the glossary corrections file')
 parser.add_argument('Files', type=directory, nargs='+', help='List of file paths to translate')
 parser.add_argument('--SugoiDirectory', type=directory, help='Path to the sugoi directory, required if Translator is \'Batch\' or \'Offline\'')
-parser.add_argument('--BatchSize', type=int, help='Number of lines to translate at once, required if Translator is \'Batch\'')
+parser.add_argument('--BatchSize', type=int, default=64, help='Number of lines to translate at once, required if Translator is \'Batch\' and defaults to 64')
 parser.add_argument('--TimeoutWait', type=int, default=315, help='Number of seconds to wait before resuming translation after a timeout, required if Translator is \'Online\' and defaults to 315 seconds')
 
 args = parser.parse_args()
