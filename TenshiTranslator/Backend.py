@@ -11,20 +11,20 @@ from TenshiTranslator.Translator.BatchTranslator import BatchTranslator
 from TenshiTranslator.Translator.OfflineTranslator import OfflineTranslator
 
 def directory(directory):
-    if os.path.isdir(directory):
+    if os.path.exists(os.path.abspath(directory)):
         return directory
     else:
-        raise NotADirectoryError(directory)
+        raise NotADirectoryError(directory + " is not a valid directory")
 
 parser = argparse.ArgumentParser(description='TenshiTranslator Backend')
 parser.add_argument('Translator', type=str, help='Type of translator to use', choices=['Online', 'Offline', 'Batch'])
 parser.add_argument('OutputFormat', type=str, help='Output format to use', choices=['LineByLine', 'EnglishOnly'])
-parser.add_argument('GlossaryNames', type=str, help='File path to the glossary names file')
-parser.add_argument('GlossaryCorrections', type=str, help='File path to the glossary corrections file')
-parser.add_argument('Files', type=str, nargs='+', help='List of file paths to translate')
-parser.add_argument('--SugoiDirectory', type=str, help='Path to the sugoi directory, required if Translator is \'Batch\' or \'Offline\'')
+parser.add_argument('GlossaryNames', type=directory, help='File path to the glossary names file')
+parser.add_argument('GlossaryCorrections', type=directory, help='File path to the glossary corrections file')
+parser.add_argument('Files', type=directory, nargs='+', help='List of file paths to translate')
+parser.add_argument('--SugoiDirectory', type=directory, help='Path to the sugoi directory, required if Translator is \'Batch\' or \'Offline\'')
 parser.add_argument('--BatchSize', type=int, help='Number of lines to translate at once, required if Translator is \'Batch\'')
-parser.add_argument('--TimeoutWait', type=int, help='Number of seconds to wait before resuming translation after a timeout, required if Translator is \'Online\'')
+parser.add_argument('--TimeoutWait', type=int, default=315, help='Number of seconds to wait before resuming translation after a timeout, required if Translator is \'Online\' and defaults to 315 seconds')
 
 args = parser.parse_args()
 
