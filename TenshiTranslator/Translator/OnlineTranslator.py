@@ -5,6 +5,7 @@ import TenshiTranslator.Util.TextProcessor
 
 from time import perf_counter, sleep
 import sys
+import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -109,7 +110,7 @@ class OnlineTranslator(Translator):
 
         try:
             for index, japanese in enumerate(japaneseLines):
-                print(f'Current File: {inputFilePath}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
+                print(f'Current File: {os.path.basename(inputFilePath)}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
 
                 if TenshiTranslator.Util.TextProcessor.isEmptyLine(japanese):
                     englishLines.append('\n')
