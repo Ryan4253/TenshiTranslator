@@ -28,7 +28,7 @@ class OfflineTranslator(Translator):
         self.sugoiDirectory = sugoiDirectory
         self.host = '127.0.0.1:14366'
 
-        print("OfflineTranslator: Starting Server...")
+        print("OfflineTranslator: Starting Server...", flush=True)
         self.server = subprocess.Popen(
             self.sugoiDirectory + "\\Code\\backendServer\\Program-Backend\\Sugoi-Japanese-Translator\\offlineTranslation\\activateOfflineTranslationServer.bat", 
             cwd=self.sugoiDirectory + "\\Code\\backendServer\\Program-Backend\\Sugoi-Japanese-Translator\\offlineTranslation", 
