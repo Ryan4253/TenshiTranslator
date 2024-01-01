@@ -89,7 +89,7 @@ class BatchTranslator(Translator):
 
                 batch.append(japanese)
 
-                if(len(batch) >= 64 or index == len(japaneseLines)-1):
+                if(len(batch) >= self.batchSize or index == len(japaneseLines)-1):
                     englishLines.extend(self.sendTranslationRequest(batch))
                     print(f'Current File: {os.path.basename(inputFilePath)}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
                     batch.clear()
