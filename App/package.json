@@ -2,7 +2,7 @@
   "name": "tenshi-translator",
   "version": "2.0.0",
   "private": true,
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -30,7 +30,7 @@
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "electron-start": "cross-env DEV=1 electron .",
-    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-start\""
+    "start": "tsc && concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-start\""
   },
   "eslintConfig": {
     "extends": [

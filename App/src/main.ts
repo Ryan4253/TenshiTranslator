@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('node:path')
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import * as path from 'path'
+import * as url from 'url'
 
 const runIPC = () => {
 	let translator = 'Online'
@@ -8,48 +9,47 @@ const runIPC = () => {
 	let format = 'LineByLine'
 	let timeout = 315;
 
-	ipcMain.on('setFormat', (event, value) => {
+	ipcMain.on('setFormat', (event: IpcMainEvent, value: string) => {
 		console.log('Format received in main process:', value);
 		format = value;
 	});
 	
-	ipcMain.on('setBatchSize', (event, value) => {
+	ipcMain.on('setBatchSize', (event: IpcMainEvent, value: number) => {
 		console.log('Slider value received in main process:', value);
 		batch_size = value;
 	});
 	
-	ipcMain.on('setTranslator', (event, value) => {
+	ipcMain.on('setTranslator', (event: IpcMainEvent, value: string) => {
 		console.log('Translator received in main process:', value);
 		translator = value;
 	});
 	
-	ipcMain.on('setTimeout', (event, value) => {
+	ipcMain.on('setTimeout', (event: IpcMainEvent, value: number) => {
 		console.log('Timeout received in main process:', value);
 		timeout = value;
 	});
 
-
-	ipcMain.on('translate', (event) => {
+	ipcMain.on('translate', (event: IpcMainEvent) => {
 		const executablePath = path.join(__dirname, '..', '..', 'Backend', 'Backend.exe');
 	
 		const { spawn } = require('child_process');
 		console.log(batch_size);
-		const child = spawn(executablePath, ['--TimeoutWait', timeout, '--BatchSize', batch_size, '--SugoiDirectory', 'C:\\Users\\ryanl\\Documents\\Apps\\Sugoi-Translator-Toolkit-6.0', translator, format, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Names.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Corrections.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\stuff.txt']).on('error', (error) => {
-			console.log(error);
-		});
+		const child = spawn(executablePath, ['--TimeoutWait', timeout, '--BatchSize', batch_size, '--SugoiDirectory', 'C:\\Users\\ryanl\\Documents\\Apps\\Sugoi-Translator-Toolkit-6.0', translator, format, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Names.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Corrections.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\stuff.txt']);
 		//, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\test.txt'
 	
 		child.stdout.setEncoding('utf8');
-		child.stdout.on('data', function(data) {
+		child.stdout.on('data', function(data : string) {
 			console.log('stdout: ' + data);
 		});
 	
 		child.stderr.setEncoding('utf8');
-		child.stderr.on('data', function(data) {
+		child.stderr.on('data', function(data : string) {
 			console.log('stderr: ' + data);
 		});
 	});	
 }
+
+let mainWindow : BrowserWindow | null;
 
 function createWindow() {
 	const startUrl = process.env.DEV 

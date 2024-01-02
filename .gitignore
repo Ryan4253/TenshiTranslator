@@ -25,4 +25,5 @@ build/
 Backend.spec
 
 # frontend
-node_modules/
+App/node_modules/
+App/dist/
