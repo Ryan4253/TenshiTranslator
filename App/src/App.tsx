@@ -8,8 +8,31 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import Tooltip from '@mui/material/Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
+import { IpcRendererEvent } from 'electron';
 
 const { ipcRenderer } = window.require('electron');
+
+function SelectSugoiFolderButton() {
+	const [sugoiDirectory, selectSugoiDirectory] = useState('');
+	
+	const setSugoiDirectory = () => {
+		ipcRenderer.send('setSugoiDirectory');
+		ipcRenderer.once('sugoiDirectoryResult', (event: IpcRendererEvent, result: string) => {
+		  	if (result && result.length > 0) {
+				selectSugoiDirectory(result);
+		  	}
+		});
+	};
+
+	return (
+		<div>
+		  	<Button variant="contained" onClick={setSugoiDirectory}>
+				Select Sugoi Folder
+		  	</Button>
+		  	{sugoiDirectory && <p>Sugoi Folder: {sugoiDirectory}</p>}
+		</div>
+	);
+}
 
 function BatchSizeSlider() {
   	const marks = [
@@ -112,7 +135,7 @@ function TranslatorSelection() {
 		{translator === "Batch" && <BatchSizeSlider />}
 		{translator === "Online" && <TimeoutSlider />}
 		</Box>
-		);
+	);
 }
 
 function OutputFormatSelection(){
@@ -120,7 +143,7 @@ function OutputFormatSelection(){
 
 	const updateFormat = (event: React.MouseEvent<HTMLElement, MouseEvent>, newFormat: any) => {
 		if(newFormat === null){
-		return;
+			return;
 		}
 
 		setFormat(newFormat);
@@ -160,6 +183,7 @@ function App() {
 	return (
 		<div className="App">
 		<header className="App-header">
+			<SelectSugoiFolderButton />
 			<TranslatorSelection />
 			<OutputFormatSelection />
 			<TranslationButton />

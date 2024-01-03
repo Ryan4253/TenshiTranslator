@@ -1,13 +1,26 @@
 // Modules to control application life and create native browser window
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent, dialog } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
 
+let mainWindow : BrowserWindow | null;
+
 const runIPC = () => {
-	let translator = 'Online'
-	let batch_size = 64;
-	let format = 'LineByLine'
+	let translator = 'Online';
+	let batchSize = 64;
+	let format = 'LineByLine';
 	let timeout = 315;
+	let sugoiDirectory = 'C://';
+
+	ipcMain.on('setSugoiDirectory', async (event: IpcMainEvent) => {
+		const result = await dialog.showOpenDialog(mainWindow!, {
+		  properties: ['openDirectory'],
+		});
+
+		sugoiDirectory = result.filePaths[0];
+		console.log(sugoiDirectory)
+		event.reply('sugoiDirectoryResult', sugoiDirectory);
+	});
 
 	ipcMain.on('setFormat', (event: IpcMainEvent, value: string) => {
 		console.log('Format received in main process:', value);
@@ -16,7 +29,7 @@ const runIPC = () => {
 	
 	ipcMain.on('setBatchSize', (event: IpcMainEvent, value: number) => {
 		console.log('Slider value received in main process:', value);
-		batch_size = value;
+		batchSize = value;
 	});
 	
 	ipcMain.on('setTranslator', (event: IpcMainEvent, value: string) => {
@@ -33,8 +46,7 @@ const runIPC = () => {
 		const executablePath = path.join(__dirname, '..', '..', 'Backend', 'Backend.exe');
 	
 		const { spawn } = require('child_process');
-		console.log(batch_size);
-		const child = spawn(executablePath, ['--TimeoutWait', timeout, '--BatchSize', batch_size, '--SugoiDirectory', 'C:\\Users\\ryanl\\Documents\\Apps\\Sugoi-Translator-Toolkit-6.0', translator, format, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Names.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Corrections.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\stuff.txt']);
+		const child = spawn(executablePath, ['--TimeoutWait', timeout, '--BatchSize', batchSize, '--SugoiDirectory', sugoiDirectory, translator, format, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Names.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\Correction\\Corrections.csv', 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\stuff.txt']);
 		//, 'C:\\Users\\ryanl\\Desktop\\tenshi-translator\\sources\\test.txt'
 	
 		child.stdout.setEncoding('utf8');
@@ -48,8 +60,6 @@ const runIPC = () => {
 		});
 	});	
 }
-
-let mainWindow : BrowserWindow | null;
 
 function createWindow() {
 	const startUrl = process.env.DEV 
@@ -81,10 +91,14 @@ app.whenReady().then(() => {
 	runIPC();
 
 	app.on('activate', function () {
-		if (BrowserWindow.getAllWindows().length === 0) createWindow()
+		if (BrowserWindow.getAllWindows().length === 0) {
+			createWindow();
+		}
 	})
 }).catch((e) => console.log(e));
 
 app.on('window-all-closed', function () {
-  	if (process.platform !== 'darwin') app.quit()
+  	if (process.platform !== 'darwin') {
+		app.quit();
+	}
 })
