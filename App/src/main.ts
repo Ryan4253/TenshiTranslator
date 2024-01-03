@@ -18,7 +18,7 @@ const runIPC = () => {
 		});
 
 		sugoiDirectory = result.filePaths[0];
-		console.log(sugoiDirectory)
+		console.log('Selected Sugoi Directory: ', sugoiDirectory)
 		event.reply('sugoiDirectoryResult', sugoiDirectory);
 	});
 
