@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';

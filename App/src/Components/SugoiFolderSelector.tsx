@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useState} from 'react';

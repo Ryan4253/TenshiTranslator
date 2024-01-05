@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import Box from '@mui/material/Box';   
+import {Box} from '@mui/material';   
 
 import BatchSizeSlider from './Components/BatchSizeSlider';
 import TimeoutSlider from './Components/TimeoutSlider';

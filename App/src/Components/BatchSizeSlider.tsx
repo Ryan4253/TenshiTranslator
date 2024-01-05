@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Box from '@mui/material/Box';   
+import {Box} from '@mui/material';   
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
