@@ -52,11 +52,21 @@ const runIPC = () => {
 		child.stdout.setEncoding('utf8');
 		child.stdout.on('data', function(data : string) {
 			console.log('stdout: ' + data);
+			event.sender.send('translationProcess', data);
 		});
 	
 		child.stderr.setEncoding('utf8');
 		child.stderr.on('data', function(data : string) {
 			console.log('stderr: ' + data);
+
+			if(!data.includes('chromedriver')){
+				event.sender.send('translationProcess', data);
+			}
+		});
+
+		child.on('close', function() {
+			event.sender.send('translationProcess', 'Translation process finished.');
+			event.sender.send('translationProcess', "");
 		});
 	});	
 }

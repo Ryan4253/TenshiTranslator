@@ -9,6 +9,7 @@ import TranslatorSelector from './Components/TranslatorSelector';
 import TranslateButton from './Components/TranslateButton';
 import SugoiFolderSelector from './Components/SugoiFolderSelector';
 import OutputFormatSelector from './Components/OutputFormatSelector';
+import LogStream from './Components/LogStream';
 
 function App() {
 	let [localTranslatorAllowed, setLocalTranslatorAllowed] = useState(false);
@@ -17,7 +18,7 @@ function App() {
 	return (
 		<div className="App">
 			<SugoiFolderSelector setSelectionState={() => {setLocalTranslatorAllowed(true);}} />
-			<Box width="300px" height="170px" justifyContent="center" alignItems="center" textAlign="center" flexDirection={'column'}>
+			<Box width="30vh" height="170px" justifyContent="center" alignItems="center" textAlign="center" flexDirection={'column'}>
 				<TranslatorSelector localTranslatorsAllowed={localTranslatorAllowed} 
 									setTranslator={(translator: string) => {setTranslator(translator);}} />
 				<BatchSizeSlider isVisible={translator === 'Batch'} />
@@ -25,6 +26,7 @@ function App() {
 			</Box>
 			<OutputFormatSelector />
 			<TranslateButton />
+			<LogStream />
 		</div>
 	);
 }

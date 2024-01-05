@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "electron": "^28.1.0"
+    "electron": "^28.1.0",
+    "material-ui-dropzone": "^3.5.0"
   }
 }
