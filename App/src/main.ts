@@ -59,9 +59,19 @@ const runIPC = () => {
 		child.stderr.on('data', function(data : string) {
 			console.log('stderr: ' + data);
 
-			if(!data.includes('chromedriver')){
-				event.sender.send('translationProcess', data);
+			if(data.includes('chromedriver') || data.includes('argparse')){
+				console.log("HI")
+				return;
 			}
+
+			const directoryError: string = 'NotADirectoryError';
+
+			if(data.indexOf(directoryError) !== -1){
+				event.sender.send('translationProcess', data.substring(data.indexOf(directoryError)));
+				return;
+			}
+
+			event.sender.send('translationProcess', data);
 		});
 
 		child.on('close', function() {
