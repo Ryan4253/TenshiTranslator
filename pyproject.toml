@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "TenshiTranslator"
-version = "1.0.2"
+version = "1.0.3"
 requires-python = ">=3.10"
 authors = [{ name="Ryan4253", email="ryan.liao0305@gmail.com" }]
 description = "Novel Translation utility using Sugoi Translator"
