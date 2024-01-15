@@ -17,6 +17,10 @@ const runIPC = () => {
 		  properties: ['openDirectory'],
 		});
 
+		if(result.filePaths[0] === undefined){
+			return;
+		}
+		
 		sugoiDirectory = result.filePaths[0];
 		console.log('Selected Sugoi Directory: ', sugoiDirectory)
 		event.reply('sugoiDirectoryResult', sugoiDirectory);
@@ -60,7 +64,6 @@ const runIPC = () => {
 			console.log('stderr: ' + data);
 
 			if(data.includes('chromedriver') || data.includes('argparse')){
-				console.log("HI")
 				return;
 			}
 
