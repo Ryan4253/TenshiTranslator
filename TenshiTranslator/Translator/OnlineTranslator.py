@@ -114,6 +114,8 @@ class OnlineTranslator(Translator):
 
                 if TenshiTranslator.Util.TextProcessor.isEmptyLine(japanese):
                     englishLines.append('\n')
+                    # Makes sure output is not too fast
+                    sleep(0.1)
                     continue
                 
                 japanese = self.glossary.replaceNames(japanese)
