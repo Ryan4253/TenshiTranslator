@@ -1,0 +1,20 @@
+TenshiTranslator.Glossary package
+=================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   TenshiTranslator.Glossary.CSVGlossary
+   TenshiTranslator.Glossary.Glossary
+   TenshiTranslator.Glossary.PassthroughGlossary
+
+Module contents
+---------------
+
+.. automodule:: TenshiTranslator.Glossary
+   :members:
+   :undoc-members:
+   :show-inheritance:

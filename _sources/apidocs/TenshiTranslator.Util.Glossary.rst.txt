@@ -1,7 +1,0 @@
-TenshiTranslator.Util.Glossary module
-=====================================
-
-.. automodule:: TenshiTranslator.Util.Glossary
-   :members:
-   :undoc-members:
-   :show-inheritance:

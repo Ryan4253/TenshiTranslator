@@ -1,0 +1,7 @@
+TenshiTranslator.Glossary.CSVGlossary module
+============================================
+
+.. automodule:: TenshiTranslator.Glossary.CSVGlossary
+   :members:
+   :undoc-members:
+   :show-inheritance:

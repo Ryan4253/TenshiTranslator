@@ -7,7 +7,6 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   TenshiTranslator.Util.Glossary
    TenshiTranslator.Util.TextProcessor
 
 Module contents

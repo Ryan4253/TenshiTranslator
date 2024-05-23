@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TenshiTranslator.Translator.Translator module &#8212; TenshiTranslator 1.0.0 documentation</title>
+    <title>TenshiTranslator.Glossary package &#8212; TenshiTranslator 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=db1dbc67" />
     <script src="../_static/documentation_options.js?v=8d563738"></script>
@@ -126,35 +126,39 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-TenshiTranslator.Translator.Translator">
-<span id="tenshitranslator-translator-translator-module"></span><h1>TenshiTranslator.Translator.Translator module<a class="headerlink" href="#module-TenshiTranslator.Translator.Translator" title="Link to this heading">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="TenshiTranslator.Translator.Translator.Translator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.Translator.</span></span><span class="sig-name descname"><span class="pre">Translator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocessGlossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary" title="TenshiTranslator.Glossary.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">postProcessGlossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary" title="TenshiTranslator.Glossary.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.Translator.Translator" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
-<p>Abstract class for translators that translates a file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>outputOption</strong> – the output format to use</p></li>
-<li><p><strong>preprocessGlossary</strong> – the glossary to use for preprocessing</p></li>
-<li><p><strong>postProcessGlossary</strong> – the glossary to use for postprocessing</p></li>
+  <section id="tenshitranslator-glossary-package">
+<h1>TenshiTranslator.Glossary package<a class="headerlink" href="#tenshitranslator-glossary-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="TenshiTranslator.Glossary.CSVGlossary.html">TenshiTranslator.Glossary.CSVGlossary module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TenshiTranslator.Glossary.CSVGlossary.html#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary"><code class="docutils literal notranslate"><span class="pre">CSVGlossary</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TenshiTranslator.Glossary.CSVGlossary.html#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary.process"><code class="docutils literal notranslate"><span class="pre">CSVGlossary.process()</span></code></a></li>
 </ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="TenshiTranslator.Translator.Translator.Translator.translate">
-<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputFilePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.Translator.Translator.translate" title="Link to this definition">¶</a></dt>
-<dd><p>Translates a file and writes to inputFilePath-Translated.txt</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>inputFilePath</strong> – path to the file to be translated</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html">TenshiTranslator.Glossary.Glossary module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary"><code class="docutils literal notranslate"><span class="pre">Glossary</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary.process"><code class="docutils literal notranslate"><span class="pre">Glossary.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TenshiTranslator.Glossary.PassthroughGlossary.html">TenshiTranslator.Glossary.PassthroughGlossary module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TenshiTranslator.Glossary.PassthroughGlossary.html#TenshiTranslator.Glossary.PassthroughGlossary.PassthroughGlossary"><code class="docutils literal notranslate"><span class="pre">PassthroughGlossary</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TenshiTranslator.Glossary.PassthroughGlossary.html#TenshiTranslator.Glossary.PassthroughGlossary.PassthroughGlossary.process"><code class="docutils literal notranslate"><span class="pre">PassthroughGlossary.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-TenshiTranslator.Glossary">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TenshiTranslator.Glossary" title="Link to this heading">¶</a></h2>
+</section>
 </section>
 
 
@@ -171,11 +175,9 @@
             <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
-<li><a class="reference internal" href="#">TenshiTranslator.Translator.Translator module</a><ul>
-<li><a class="reference internal" href="#TenshiTranslator.Translator.Translator.Translator"><code class="docutils literal notranslate"><span class="pre">Translator</span></code></a><ul>
-<li><a class="reference internal" href="#TenshiTranslator.Translator.Translator.Translator.translate"><code class="docutils literal notranslate"><span class="pre">Translator.translate()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">TenshiTranslator.Glossary package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TenshiTranslator.Glossary">Module contents</a></li>
 </ul>
 </li>
 </ul>

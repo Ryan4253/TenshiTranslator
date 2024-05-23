@@ -1,0 +1,7 @@
+TenshiTranslator.Glossary.PassthroughGlossary module
+====================================================
+
+.. automodule:: TenshiTranslator.Glossary.PassthroughGlossary
+   :members:
+   :undoc-members:
+   :show-inheritance:

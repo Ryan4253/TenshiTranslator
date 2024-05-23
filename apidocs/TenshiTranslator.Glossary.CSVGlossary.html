@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TenshiTranslator.Util.Glossary module &#8212; TenshiTranslator 1.0.0 documentation</title>
+    <title>TenshiTranslator.Glossary.CSVGlossary module &#8212; TenshiTranslator 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=94a554c0" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=db1dbc67" />
     <script src="../_static/documentation_options.js?v=8d563738"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
@@ -100,7 +100,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -108,7 +108,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
@@ -126,53 +126,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-TenshiTranslator.Util.Glossary">
-<span id="tenshitranslator-util-glossary-module"></span><h1>TenshiTranslator.Util.Glossary module<a class="headerlink" href="#module-TenshiTranslator.Util.Glossary" title="Link to this heading">¶</a></h1>
+  <section id="module-TenshiTranslator.Glossary.CSVGlossary">
+<span id="tenshitranslator-glossary-csvglossary-module"></span><h1>TenshiTranslator.Glossary.CSVGlossary module<a class="headerlink" href="#module-TenshiTranslator.Glossary.CSVGlossary" title="Link to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="TenshiTranslator.Util.Glossary.Glossary">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Util.Glossary.</span></span><span class="sig-name descname"><span class="pre">Glossary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namePath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correctionPath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Util.Glossary.Glossary" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>High level glossary that allows you to specify translations for specific phrases and also apply corrections
-to the translated text.</p>
-<p>This is commonly used for names and other jargons that may not be translated correctly.
-The glossary is loaded from two .csv files, one for replacements and one for post translation corrections.
-Name replacement is done directly, while corrections are done using regex. The .csv files must be in the format
-of &lt;input&gt;,&lt;output&gt;, with each entry separated by a new line.</p>
+<dt class="sig sig-object py" id="TenshiTranslator.Glossary.CSVGlossary.CSVGlossary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Glossary.CSVGlossary.</span></span><span class="sig-name descname"><span class="pre">CSVGlossary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processPath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary" title="TenshiTranslator.Glossary.Glossary.Glossary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glossary</span></code></a></p>
+<p>Glossary with inputs from CSV files</p>
+<p>The glossary is loaded from a CSV file
+Processing is done using regex. The CSV file must be in the format &lt;input&gt;,&lt;output&gt;, with each entry separated by a new line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>namePath</strong> – path to the .csv file containing the name replacements</p></li>
-<li><p><strong>correctionPath</strong> – path to the csv file containing the post translation corrections</p></li>
-</ul>
+<dd class="field-odd"><p><strong>processPath</strong> – path to the .csv file containing processing replacements</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p>FileNotFoundError if any file is not found</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="TenshiTranslator.Util.Glossary.Glossary.applyCorrections">
-<span class="sig-name descname"><span class="pre">applyCorrections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.Glossary.Glossary.applyCorrections" title="Link to this definition">¶</a></dt>
-<dd><p>Apply corrections in a line using regex</p>
+<dt class="sig sig-object py" id="TenshiTranslator.Glossary.CSVGlossary.CSVGlossary.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary.process" title="Link to this definition">¶</a></dt>
+<dd><p>Apply corrections to a line using regex</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>line</strong> – line to be modified</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>line corrected according to the loaded csv file</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="TenshiTranslator.Util.Glossary.Glossary.replaceNames">
-<span class="sig-name descname"><span class="pre">replaceNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#TenshiTranslator.Util.Glossary.Glossary.replaceNames" title="Link to this definition">¶</a></dt>
-<dd><p>Replaces names in a line</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>line</strong> – line to be modified</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>line with names replaced according to the loaded csv file</p>
 </dd>
 </dl>
 </dd></dl>
@@ -195,10 +175,9 @@ of &lt;input&gt;,&lt;output&gt;, with each entry separated by a new line.</p>
             <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
-<li><a class="reference internal" href="#">TenshiTranslator.Util.Glossary module</a><ul>
-<li><a class="reference internal" href="#TenshiTranslator.Util.Glossary.Glossary"><code class="docutils literal notranslate"><span class="pre">Glossary</span></code></a><ul>
-<li><a class="reference internal" href="#TenshiTranslator.Util.Glossary.Glossary.applyCorrections"><code class="docutils literal notranslate"><span class="pre">Glossary.applyCorrections()</span></code></a></li>
-<li><a class="reference internal" href="#TenshiTranslator.Util.Glossary.Glossary.replaceNames"><code class="docutils literal notranslate"><span class="pre">Glossary.replaceNames()</span></code></a></li>
+<li><a class="reference internal" href="#">TenshiTranslator.Glossary.CSVGlossary module</a><ul>
+<li><a class="reference internal" href="#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary"><code class="docutils literal notranslate"><span class="pre">CSVGlossary</span></code></a><ul>
+<li><a class="reference internal" href="#TenshiTranslator.Glossary.CSVGlossary.CSVGlossary.process"><code class="docutils literal notranslate"><span class="pre">CSVGlossary.process()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -226,7 +205,7 @@ of &lt;input&gt;,&lt;output&gt;, with each entry separated by a new line.</p>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2023, Ryan4253.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -7,9 +7,9 @@
 
     <title>TenshiTranslator.Translator.BatchTranslator module &#8212; TenshiTranslator 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=94a554c0" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=db1dbc67" />
     <script src="../_static/documentation_options.js?v=8d563738"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
@@ -100,7 +100,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -108,7 +108,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
@@ -130,7 +130,7 @@
 <span id="tenshitranslator-translator-batchtranslator-module"></span><h1>TenshiTranslator.Translator.BatchTranslator module<a class="headerlink" href="#module-TenshiTranslator.Translator.BatchTranslator" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="TenshiTranslator.Translator.BatchTranslator.BatchTranslator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.BatchTranslator.</span></span><span class="sig-name descname"><span class="pre">BatchTranslator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">glossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Util.Glossary.html#TenshiTranslator.Util.Glossary.Glossary" title="TenshiTranslator.Util.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sugoiDirectory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.BatchTranslator.BatchTranslator" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">TenshiTranslator.Translator.BatchTranslator.</span></span><span class="sig-name descname"><span class="pre">BatchTranslator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputOption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.OutputFormat.OutputFormat.html#TenshiTranslator.OutputFormat.OutputFormat.OutputFormat" title="TenshiTranslator.OutputFormat.OutputFormat.OutputFormat"><span class="pre">OutputFormat</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocessGlossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary" title="TenshiTranslator.Glossary.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">postProcessGlossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="TenshiTranslator.Glossary.Glossary.html#TenshiTranslator.Glossary.Glossary.Glossary" title="TenshiTranslator.Glossary.Glossary.Glossary"><span class="pre">Glossary</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sugoiDirectory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TenshiTranslator.Translator.BatchTranslator.BatchTranslator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="TenshiTranslator.Translator.Translator.html#TenshiTranslator.Translator.Translator.Translator" title="TenshiTranslator.Translator.Translator.Translator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translator</span></code></a></p>
 <p>Translator that send batches to sugoi toolkit’s offline translation server.</p>
 <p>Files are translated in batches through http requests, optimizating translation time by maximizing
@@ -142,7 +142,8 @@ The object takes around 12 seconds to initialize, as it starts the sugoi offline
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>outputOption</strong> – the output format to use</p></li>
-<li><p><strong>glossary</strong> – the glossary to use</p></li>
+<li><p><strong>preprocessGlossary</strong> – the glossary to use for preprocessing</p></li>
+<li><p><strong>postProcessGlossary</strong> – the glossary to use for postprocessing</p></li>
 <li><p><strong>sugoiDirectory</strong> – the path to the sugoi toolkit</p></li>
 <li><p><strong>batchSize</strong> – the number of lines to translate per request, defaults to 64</p></li>
 </ul>
@@ -228,7 +229,7 @@ The object takes around 12 seconds to initialize, as it starts the sugoi offline
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2023, Ryan4253.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
