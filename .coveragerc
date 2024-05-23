@@ -1,2 +1,2 @@
 [run]
-omit = TenshiTranslator/Backend.py
+omit = TenshiTranslator/TenshiTranslatorCLI.py
