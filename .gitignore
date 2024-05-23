@@ -23,7 +23,3 @@ dist/
 # executable
 build/
 .spec
-
-# frontend
-App/node_modules/
-App/dist/

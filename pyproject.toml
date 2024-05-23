@@ -38,5 +38,7 @@ include = [
 ]
 
 exclude = [
-  "TenshiTranslator/TenshiTranslatorCLI.py"
+  "TenshiTranslator/TenshiTranslatorCLI.py",
+  "TenshiTranslator/TenshiTranslatorGUI.py",
+  "TenshiTranslator/UI/*",
 ]

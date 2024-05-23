@@ -1,2 +1,6 @@
 [run]
-omit = TenshiTranslator/TenshiTranslatorCLI.py
+omit = 
+    __init__.py
+    TenshiTranslator/TenshiTranslatorCLI.py
+    TenshiTranslator/TenshiTranslatorGUI.py
+    TenshiTranslator/UI/*
