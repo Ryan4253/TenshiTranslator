@@ -1,6 +1,6 @@
 from TenshiTranslator.Translator.Translator import Translator
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
-from TenshiTranslator.Util.Glossary import Glossary
+from TenshiTranslator.Glossary.Glossary import Glossary
 import TenshiTranslator.Util.TextProcessor
 
 from time import perf_counter, sleep
@@ -24,12 +24,13 @@ class OnlineTranslator(Translator):
     sentences will be split into multiple requests, and contexts will not be taken into account.
 
     :param outputOption: the output format to use
-    :param glossary: the glossary to use
+    :param preprocessGlossary: the glossary to use for preprocessing
+    :param postProcessGlossary: the glossary to use for postprocessing
     :param timeoutWait: the time to wait in seconds when a timeout is detected, defaults to 315 seconds
     """
 
-    def __init__(self, outputOption: OutputFormat, glossary: Glossary, timeoutWait: int = 315):
-        super().__init__(outputOption, glossary)
+    def __init__(self, outputOption: OutputFormat, preprocessGlossary: Glossary, postProcessGlossary: Glossary, timeoutWait: int = 315):
+        super().__init__(outputOption, preprocessGlossary, postProcessGlossary)
         self.timeoutWait = timeoutWait
 
         self.url = "https://sugoitranslator.com/"
@@ -118,12 +119,12 @@ class OnlineTranslator(Translator):
                     sleep(0.1)
                     continue
                 
-                japanese = self.glossary.replaceNames(japanese)
+                japanese = self.preprocessGlossary.process(japanese)
                 japanese = TenshiTranslator.Util.TextProcessor.removeIndent(japanese)
 
                 # Sugoi web translator has a character limit of 150 characters per request
                 english = self.japaneseToEnglish(TenshiTranslator.Util.TextProcessor.splitToSentence(japanese, 150))
-                english = self.glossary.applyCorrections(english)
+                english = self.postProcessGlossary.process(english)
                 englishLines.append(english)
     
         except Exception as e:
