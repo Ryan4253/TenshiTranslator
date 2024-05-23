@@ -1,5 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QPushButton
+from PyQt6.QtCore import Qt
 
 class OutputFormatSelector(QWidget):
     def __init__(self):
@@ -14,11 +15,9 @@ class OutputFormatSelector(QWidget):
         self.englishOnly.setCheckable(True)
         self.englishOnly.clicked.connect(self.toggleEnglishOnly)
     
-        layout = QHBoxLayout()
+        layout = QHBoxLayout(self)
         layout.addWidget(self.lineByLine)
         layout.addWidget(self.englishOnly)
-
-        self.setLayout(layout)
 
     def toggleLineByLine(self):
         sender = self.sender()
@@ -34,9 +33,9 @@ class OutputFormatSelector(QWidget):
     
     def getOutputFormat(self):
         if self.lineByLine.isChecked():
-            return "Line By Line"
+            return "LineByLine"
         elif self.englishOnly.isChecked():
-            return "English Only"
+            return "EnglishOnly"
         else:
             return None
 
