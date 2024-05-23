@@ -8,6 +8,7 @@ from TenshiTranslator.OutputFormat.LineByLineFormat import LineByLineFormat
 from TenshiTranslator.Util.Glossary import Glossary
 from TenshiTranslator.Util.TextProcessor import retrieveLines
 
+@pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is not None, reason="Test doesn't work on Github Actions.")
 def test_OnlineTranslator():
     glossary = Glossary("test/assets/SampleNames.csv", "test/assets/SampleCorrections.csv")
     translator = OnlineTranslator(LineByLineFormat(), glossary)
