@@ -1,6 +1,6 @@
 from TenshiTranslator.Translator.Translator import Translator
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
-from TenshiTranslator.Util.Glossary import Glossary
+from TenshiTranslator.Glossary.Glossary import Glossary
 import TenshiTranslator.Util.TextProcessor
 
 from time import perf_counter, sleep
@@ -19,12 +19,13 @@ class OfflineTranslator(Translator):
     12 seconds to initialize, as it starts the sugoi offline translator server.
     
     :param outputOption: the output format to use
-    :param glossary: the glossary to use
+    :param preprocessGlossary: the glossary to use for preprocessing
+    :param postProcessGlossary: the glossary to use for postprocessing
     :param sugoiDirectory: the path to the sugoi toolkit
     """
 
-    def __init__(self, outputOption: OutputFormat, glossary: Glossary, sugoiDirectory: str):
-        super().__init__(outputOption, glossary)
+    def __init__(self, outputOption: OutputFormat, preprocessGlossary: Glossary, postProcessGlossary: Glossary, sugoiDirectory: str):
+        super().__init__(outputOption, preprocessGlossary, postProcessGlossary)
         self.sugoiDirectory = sugoiDirectory
         self.host = '127.0.0.1:14366'
 
@@ -81,11 +82,11 @@ class OfflineTranslator(Translator):
             for index, japanese in enumerate(japaneseLines):
                 print(f'Current File: {os.path.basename(inputFilePath)}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
 
-                japanese = self.glossary.replaceNames(japanese)
+                japanese = self.preprocessGlossary.process(japanese)
                 japanese = TenshiTranslator.Util.TextProcessor.removeIndent(japanese)
 
                 english = self.sendTranslationRequest(japanese)
-                english = self.glossary.applyCorrections(english)
+                english = self.postProcessGlossary.process(english)
                 englishLines.append(english)
 
         except Exception as e:
