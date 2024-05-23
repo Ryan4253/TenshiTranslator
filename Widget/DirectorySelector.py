@@ -1,5 +1,4 @@
-import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog
+from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFileDialog
 from PyQt6.QtCore import Qt
 
 class DirectorySelector(QWidget):
@@ -25,3 +24,9 @@ class DirectorySelector(QWidget):
             self.button.setToolTip(selected_path)
             print(f"Selected path: {selected_path}")
             self.button.setText('Selected')
+
+    def getDirectory(self):
+        if self.button.text() == 'Selected':
+            return self.button.toolTip()
+    
+        return None
