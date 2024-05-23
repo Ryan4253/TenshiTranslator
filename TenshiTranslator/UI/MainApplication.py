@@ -1,9 +1,10 @@
-from DirectorySelector import DirectorySelector
-from CSVFileSelector import CSVFileSelector
-from FileDragDrop import FileDropWidget
-from OutputFormatSelector import OutputFormatSelector
-from Terminal import Terminal
-from TranslatorSelector import TranslatorSelector
+from TenshiTranslator.UI.DirectorySelector import DirectorySelector
+from TenshiTranslator.UI.CSVFileSelector import CSVFileSelector
+from TenshiTranslator.UI.FileDragDrop import FileDropWidget
+from TenshiTranslator.UI.OutputFormatSelector import OutputFormatSelector
+from TenshiTranslator.UI.Terminal import Terminal
+from TenshiTranslator.UI.TranslatorSelector import TranslatorSelector
+
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
 from PyQt6.QtCore import Qt
 
@@ -11,7 +12,7 @@ class MainApplication(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('TenshiTranslator')
-        self.setFixedSize(1000, 500)
+        self.setFixedSize(1000, 525)
 
         self.buildLeftUI()
         self.buildRightUI()

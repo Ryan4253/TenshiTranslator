@@ -1,8 +1,10 @@
-from FileFrame import FileFrame
+from TenshiTranslator.UI.FileFrame import FileFrame
+
+import os
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QDragEnterEvent, QDropEvent
 from PyQt6.QtWidgets import QScrollArea, QWidget, QVBoxLayout
-import os
 
 class FileDropWidget(QScrollArea):
     def __init__(self):

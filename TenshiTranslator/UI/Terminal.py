@@ -1,4 +1,3 @@
-import sys
 from PyQt6.QtWidgets import QPlainTextEdit
 
 class Terminal(QPlainTextEdit):

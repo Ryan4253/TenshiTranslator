@@ -1,7 +1,8 @@
+from TenshiTranslator.UI.TimeoutSlider import TimeoutSlider
+from TenshiTranslator.UI.BatchSizeSlider import BatchSizeSlider
+
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QStackedWidget, QSpacerItem, QSizePolicy
 from PyQt6.QtCore import Qt
-from TimeoutSlider import TimeoutSlider
-from BatchSizeSlider import BatchSizeSlider  
 
 class TranslatorSelector(QWidget):
     def __init__(self):
