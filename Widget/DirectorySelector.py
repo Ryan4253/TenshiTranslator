@@ -1,12 +1,18 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog, QLabel
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog
+from PyQt6.QtCore import Qt
 
-class FileSelectorWidget(QWidget):
+class DirectorySelector(QWidget):
     def __init__(self, title):
         super().__init__()
 
         self.button = QPushButton(title, self)
         self.button.clicked.connect(self.openFileDialog)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.button)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.setLayout(layout)
 
 
     def openFileDialog(self):
