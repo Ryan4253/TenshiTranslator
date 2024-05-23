@@ -1,6 +1,6 @@
 from TenshiTranslator.Translator.Translator import Translator
 from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
-from TenshiTranslator.Util.Glossary import Glossary
+from TenshiTranslator.Glossary.Glossary import Glossary
 import TenshiTranslator.Util.TextProcessor
 
 from time import perf_counter, sleep
@@ -20,13 +20,14 @@ class BatchTranslator(Translator):
     The object takes around 12 seconds to initialize, as it starts the sugoi offline translator server.
     
     :param outputOption: the output format to use
-    :param glossary: the glossary to use
+    :param preprocessGlossary: the glossary to use for preprocessing
+    :param postProcessGlossary: the glossary to use for postprocessing
     :param sugoiDirectory: the path to the sugoi toolkit
     :param batchSize: the number of lines to translate per request, defaults to 64
     """
 
-    def __init__(self, outputOption: OutputFormat, glossary: Glossary, sugoiDirectory: str, batchSize: int = 64):
-        super().__init__(outputOption, glossary)
+    def __init__(self, outputOption: OutputFormat, preprocessGlossary: Glossary, postProcessGlossary: Glossary, sugoiDirectory: str, batchSize: int = 64):
+        super().__init__(outputOption, preprocessGlossary, postProcessGlossary)
         self.batchSize = batchSize
         self.sugoiDirectory = sugoiDirectory
         self.host = '127.0.0.1:14366'
@@ -84,7 +85,7 @@ class BatchTranslator(Translator):
             batch = []
 
             for index, japanese in enumerate(japaneseLines):
-                japanese = self.glossary.replaceNames(japanese)
+                japanese = self.preprocessGlossary.process(japanese)
                 japanese = TenshiTranslator.Util.TextProcessor.removeIndent(japanese)
 
                 batch.append(japanese)
@@ -94,7 +95,7 @@ class BatchTranslator(Translator):
                     print(f'Current File: {os.path.basename(inputFilePath)}, Progress: {index+1}/{len(japaneseLines)} lines', flush=True)
                     batch.clear()
 
-            englishLines = [self.glossary.applyCorrections(english) for english in englishLines]
+            englishLines = [self.postProcessGlossary.process(english) for english in englishLines]
 
         except Exception as e:
             print(f"An error occurred: {str(e)}", flush=True)
