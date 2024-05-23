@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFileDialog
 from PyQt6.QtCore import Qt
 
-class DirectorySelector(QWidget):
+class CSVFileSelector(QWidget):
     def __init__(self, title):
         super().__init__()
 
@@ -15,8 +15,7 @@ class DirectorySelector(QWidget):
 
     def openFileDialog(self):
         fileDialog = QFileDialog()
-        fileDialog.setFileMode(QFileDialog.FileMode.Directory)
-        fileDialog.setOption(QFileDialog.Option.ShowDirsOnly)
+        fileDialog.setNameFilter("CSV File (*.csv)")
 
         if fileDialog.exec():
             selected_path = fileDialog.selectedFiles()[0]
