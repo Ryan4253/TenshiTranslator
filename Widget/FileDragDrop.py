@@ -1,4 +1,4 @@
-from Widget.FileFrame import FileFrame
+from FileFrame import FileFrame
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QDragEnterEvent, QDropEvent
 from PyQt6.QtWidgets import QScrollArea, QWidget, QVBoxLayout
@@ -36,6 +36,9 @@ class FileDropWidget(QScrollArea):
             return
         
         if not os.path.isfile(fileName):
+            return
+        
+        if not fileName.endswith(".txt"):
             return
 
         fileFrame = FileFrame(fileName)
