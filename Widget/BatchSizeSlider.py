@@ -1,6 +1,5 @@
-from PyQt6.QtWidgets import QSlider, QToolTip, QWidget, QApplication, QVBoxLayout
+from PyQt6.QtWidgets import QSlider, QToolTip, QWidget, QVBoxLayout
 from PyQt6.QtCore import Qt, QEvent
-import sys
 
 class BatchSizeSlider(QWidget):
     def __init__(self):
@@ -32,9 +31,3 @@ class BatchSizeSlider(QWidget):
     
     def getBatchSize(self):
         return self.labels[self.slider.value()]
-    
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = BatchSizeSlider()
-    ex.show()
-    sys.exit(app.exec())

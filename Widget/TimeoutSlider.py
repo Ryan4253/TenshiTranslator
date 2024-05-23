@@ -1,6 +1,5 @@
-from PyQt6.QtWidgets import QSlider, QToolTip, QWidget, QApplication, QVBoxLayout
+from PyQt6.QtWidgets import QSlider, QToolTip, QWidget, QVBoxLayout
 from PyQt6.QtCore import Qt, QEvent
-import sys
 
 class TimeoutSlider(QWidget):
     def __init__(self):
@@ -29,9 +28,3 @@ class TimeoutSlider(QWidget):
     
     def getTimeout(self):
         return self.slider.value() * 5
-    
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = TimeoutSlider()
-    ex.show()
-    sys.exit(app.exec())
