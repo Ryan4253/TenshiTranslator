@@ -81,4 +81,4 @@ class TranslatorSelector(QWidget):
         return self.slider1.getTimeout()
     
     def getBatchSize(self):
-        return self.slider2.getBatchSize()
+        return int(self.slider3.getBatchSize())
