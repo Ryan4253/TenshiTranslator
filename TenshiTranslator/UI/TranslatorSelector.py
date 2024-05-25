@@ -5,7 +5,13 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLab
 from PyQt6.QtCore import Qt
 
 class TranslatorSelector(QWidget):
+    """ A widget that allows the user to select the translator and relevant configuration
+    """
+
     def __init__(self):
+        """ Initializes the widget with buttons to select the translator and sliders to configure the translator.
+        """
+
         super().__init__()
 
         self.buildButtonWidget()
@@ -20,6 +26,9 @@ class TranslatorSelector(QWidget):
         self.toggle(0)
 
     def buildButtonWidget(self):
+        """ Builds the buttons to select the translator.
+        """
+
         self.onlineButton = QPushButton("Online")
         self.offlineButton = QPushButton("Offline")
         self.batchButton = QPushButton("Batch")
@@ -38,6 +47,9 @@ class TranslatorSelector(QWidget):
         self.buttonLayout.addWidget(self.batchButton)
 
     def buildSliderWidget(self):
+        """ Builds the sliders to configure the translator.
+        """
+
         self.onlineWidget = QWidget()
         self.onlineLayout = QVBoxLayout(self.onlineWidget)
         self.onlineLabel = QLabel("Timeout (s)")
@@ -60,12 +72,22 @@ class TranslatorSelector(QWidget):
         self.stackedWidget.addWidget(self.batchWidget)
 
     def toggle(self, index: int):
+        """ Toggles the selected translator.
+
+        :param index: the index of the translator to select
+        """
+
         self.onlineButton.setChecked(index == 0)
         self.offlineButton.setChecked(index == 1)
         self.batchButton.setChecked(index == 2)
         self.stackedWidget.setCurrentIndex(index)
 
-    def getTranslator(self):
+    def getTranslator(self) -> str:
+        """ Gets the selected translator.
+
+        :return: the selected translator
+        """
+
         if self.onlineButton.isChecked():
             return "Online"
         
@@ -77,8 +99,18 @@ class TranslatorSelector(QWidget):
         
         return None
         
-    def getTimeout(self):
+    def getTimeout(self) -> int:
+        """ Gets the selected timeout.
+
+        :return: the selected timeout
+        """
+
         return self.timeoutSlider.getTimeout()
     
-    def getBatchSize(self):
+    def getBatchSize(self) -> int:
+        """ Gets the selected batch size.
+        
+        :return: the selected batch size
+        """
+
         return int(self.batchSizeSlider.getBatchSize())

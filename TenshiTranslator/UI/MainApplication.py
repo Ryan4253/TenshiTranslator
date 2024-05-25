@@ -6,8 +6,10 @@ from TenshiTranslator.UI.Terminal import Terminal
 from TenshiTranslator.UI.TranslatorSelector import TranslatorSelector
 from TenshiTranslator.UI.TranslationProcess import TranslationProcess, TranslatorConfig
 
+from TenshiTranslator.Glossary.Glossary import Glossary
 from TenshiTranslator.Glossary.CSVGlossary import CSVGlossary
 from TenshiTranslator.Glossary.PassthroughGlossary import PassthroughGlossary
+from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
 from TenshiTranslator.OutputFormat.LineByLineFormat import LineByLineFormat
 from TenshiTranslator.OutputFormat.EnglishOnlyFormat import EnglishOnlyFormat
 
@@ -15,7 +17,13 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButt
 from PyQt6.QtCore import Qt, QTimer
 
 class MainApplication(QWidget):
+    """ The main application window
+    """
+
     def __init__(self):
+        """ Initializes the main application window
+        """
+
         super().__init__()
         self.initUI()
 
@@ -25,6 +33,9 @@ class MainApplication(QWidget):
         self.processListener.start(100)
 
     def initUI(self):
+        """ Initializes the UI of the main application window
+        """
+
         self.setWindowTitle('TenshiTranslator')
         self.setFixedSize(1000, 525)
 
@@ -37,6 +48,9 @@ class MainApplication(QWidget):
         self.setLayout(layout)
 
     def initLeftUI(self):
+        """ Initializes the left side of the UI
+        """
+
         self.sugoiLabel = QLabel("Select Sugoi Translator")
         self.sugoiSelector = DirectorySelector("Select")
         self.preprocessCSVLabel = QLabel("Select Preprocess Glossary")
@@ -73,6 +87,9 @@ class MainApplication(QWidget):
         leftLayout.addWidget(actionWidget)
 
     def initRightUI(self):
+        """ Initializes the right side of the UI
+        """
+
         self.fileDropWidget = FileDropWidget()
         self.terminal = Terminal()
 
@@ -82,7 +99,12 @@ class MainApplication(QWidget):
         rightLayout.addWidget(self.fileDropWidget)
         rightLayout.addWidget(self.terminal)
 
-    def buildTranslatorConfig(self):
+    def buildTranslatorConfig(self) -> TranslatorConfig:
+        """ Builds the translator configuration based on the user input
+
+        :return: the translator configuration
+        """
+
         if self.translatorSelector.getTranslator() != "Online" and self.sugoiSelector.getDirectory() is None:
             self.terminal.write("Please select the Sugoi Translator directory.\n")
             return None
@@ -101,19 +123,40 @@ class MainApplication(QWidget):
             self.translatorSelector.getBatchSize()
         )
 
-    def buildOutputFormat(self, formatString: str):
+    def buildOutputFormat(self, formatString: str) -> OutputFormat:
+        """ Builds the output format based on the selected format string.
+
+        :param formatString: the selected format string
+        :return: the output format
+        """
+
         return LineByLineFormat() if formatString == "LineByLine" else EnglishOnlyFormat()
     
-    def buildGlossary(self, directory: str):
+    def buildGlossary(self, directory: str) -> Glossary:
+        """ Builds the glossary based on the selected directory.
+
+        :param directory: the selected directory
+        :return: the glossary
+        """
+
         return CSVGlossary(directory) if directory is not None else PassthroughGlossary()
 
     def setTranslateButton(self, text: str, color: str, action: callable):
+        """ Sets the text, color, and action of the translate button.
+
+        :param text: the text of the button
+        :param color: the color of the button
+        :param action: the action of the button
+        """
         self.translateButton.setText(text)
         self.translateButton.setStyleSheet(f"background-color: {color}")
         self.translateButton.disconnect()
         self.translateButton.clicked.connect(action)
 
     def listenToProcess(self):
+        """ Listens to the translation process and updates the terminal.
+        """
+
         if self.process is None:
             return
         
@@ -124,6 +167,9 @@ class MainApplication(QWidget):
             self.onComplete()
 
     def onTranslate(self):
+        """ Handles starting the translation process
+        """
+
         translatorConfig = self.buildTranslatorConfig()
         if translatorConfig is None:
             return
@@ -134,14 +180,22 @@ class MainApplication(QWidget):
         self.setTranslateButton("Stop", "red", self.onStop)
  
     def onStop(self):
+        """ Handles stopping the translation process
+        """
+
         self.process.terminate()
         self.terminal.write("Translation Stopped\n")
         self.onComplete()
 
     def onComplete(self):
+        """ Handles the completion of the translation process.
+        """
+
         self.process = None    
         self.setTranslateButton("Translate", "", self.onTranslate)
 
     def onClear(self):
+        """ Handles clearing the files and terminal.
+        """
         self.fileDropWidget.clearFiles()
         self.terminal.clear()
