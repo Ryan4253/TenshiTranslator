@@ -69,5 +69,5 @@ class FileDropWidget(QScrollArea):
             self.containerLayout.itemAt(i).widget().setParent(None)
 
         self.containerLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.watermarkLabel.setVisible(True)
+        self.watermarkLabel.show()
 

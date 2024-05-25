@@ -1,5 +1,7 @@
+from multiprocessing import Queue
+
 class StdoutRedirector:
-    def __init__(self, outputBuffer):
+    def __init__(self, outputBuffer: Queue):
         self.outputBuffer = outputBuffer
 
     def write(self, text):

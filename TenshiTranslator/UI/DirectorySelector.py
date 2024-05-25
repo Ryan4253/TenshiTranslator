@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFileDialog
 from PyQt6.QtCore import Qt
 
 class DirectorySelector(QWidget):
-    def __init__(self, title):
+    def __init__(self, title: str):
         super().__init__()
 
         self.button = QPushButton(title, self)

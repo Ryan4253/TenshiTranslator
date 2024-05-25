@@ -17,7 +17,7 @@ class TimeoutSlider(QWidget):
         self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.slider)
 
-    def event(self, event):
+    def event(self, event: QEvent):
         if event.type() == QEvent.Type.MouseMove or event.type() == QEvent.Type.ToolTip:
             self.updateTooltip()
             

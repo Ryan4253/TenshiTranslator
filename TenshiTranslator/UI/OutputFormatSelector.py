@@ -19,7 +19,7 @@ class OutputFormatSelector(QWidget):
 
         self.toggle(0)
 
-    def toggle(self, index):
+    def toggle(self, index: int):
         self.lineByLine.setChecked(index == 0)
         self.englishOnly.setChecked(index == 1)
     

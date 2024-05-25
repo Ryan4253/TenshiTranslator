@@ -1,5 +1,7 @@
 from TenshiTranslator.UI.StdoutRedirector import StdoutRedirector
 
+from TenshiTranslator.OutputFormat.OutputFormat import OutputFormat
+from TenshiTranslator.Glossary.Glossary import Glossary
 from TenshiTranslator.Translator.OnlineTranslator import OnlineTranslator
 from TenshiTranslator.Translator.BatchTranslator import BatchTranslator
 from TenshiTranslator.Translator.OfflineTranslator import OfflineTranslator
@@ -8,7 +10,8 @@ import multiprocessing
 import sys
 
 class TranslatorConfig:
-    def __init__(self, translatorType, preprocessGlossary, postprocessGlossary, outputFormat, sugoiDirectory, timeout, batchSize):
+    def __init__(self, translatorType: str, preprocessGlossary: Glossary, postprocessGlossary: Glossary, 
+                 outputFormat: OutputFormat, sugoiDirectory: str, timeout: int, batchSize: int):
         self.translatorType = translatorType
         self.preprocessGlossary = preprocessGlossary
         self.postprocessGlossary = postprocessGlossary
@@ -18,7 +21,7 @@ class TranslatorConfig:
         self.batchSize = batchSize
 
 class TranslationProcess(multiprocessing.Process):
-    def __init__(self, translatorConfig, files):
+    def __init__(self, translatorConfig: TranslatorConfig, files: list[str]):
         super().__init__()
         self.translatorConfig = translatorConfig
         self.files = files

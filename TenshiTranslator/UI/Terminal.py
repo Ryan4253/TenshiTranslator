@@ -5,7 +5,7 @@ class Terminal(QPlainTextEdit):
         super().__init__()
         self.setReadOnly(True)
 
-    def write(self, text):
+    def write(self, text: str):
         self.insertPlainText(text)
         self.ensureCursorVisible()
 

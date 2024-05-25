@@ -101,13 +101,13 @@ class MainApplication(QWidget):
             self.translatorSelector.getBatchSize()
         )
 
-    def buildOutputFormat(self, formatString):
+    def buildOutputFormat(self, formatString: str):
         return LineByLineFormat() if formatString == "LineByLine" else EnglishOnlyFormat()
     
-    def buildGlossary(self, directory):
+    def buildGlossary(self, directory: str):
         return CSVGlossary(directory) if directory is not None else PassthroughGlossary()
 
-    def setTranslateButton(self, text, color, action):
+    def setTranslateButton(self, text: str, color: str, action: callable):
         self.translateButton.setText(text)
         self.translateButton.setStyleSheet(f"background-color: {color}")
         self.translateButton.disconnect()
