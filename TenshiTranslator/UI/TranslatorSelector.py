@@ -20,65 +20,65 @@ class TranslatorSelector(QWidget):
         self.toggle(0)
 
     def buildButtonWidget(self):
-        self.button1 = QPushButton("Online")
-        self.button2 = QPushButton("Offline")
-        self.button3 = QPushButton("Batch")
+        self.onlineButton = QPushButton("Online")
+        self.offlineButton = QPushButton("Offline")
+        self.batchButton = QPushButton("Batch")
 
-        self.button1.setCheckable(True)
-        self.button2.setCheckable(True)
-        self.button3.setCheckable(True)
+        self.onlineButton.setCheckable(True)
+        self.offlineButton.setCheckable(True)
+        self.batchButton.setCheckable(True)
 
-        self.button1.clicked.connect(lambda: self.toggle(0))
-        self.button2.clicked.connect(lambda: self.toggle(1))
-        self.button3.clicked.connect(lambda: self.toggle(2))
+        self.onlineButton.clicked.connect(lambda: self.toggle(0))
+        self.offlineButton.clicked.connect(lambda: self.toggle(1))
+        self.batchButton.clicked.connect(lambda: self.toggle(2))
         
         self.buttonLayout = QHBoxLayout()
-        self.buttonLayout.addWidget(self.button1)
-        self.buttonLayout.addWidget(self.button2)
-        self.buttonLayout.addWidget(self.button3)
+        self.buttonLayout.addWidget(self.onlineButton)
+        self.buttonLayout.addWidget(self.offlineButton)
+        self.buttonLayout.addWidget(self.batchButton)
 
     def buildSliderWidget(self):
-        self.widget1 = QWidget()
-        self.widget1Layout = QVBoxLayout(self.widget1)
-        self.label1 = QLabel("Timeout (s)")
-        self.slider1 = TimeoutSlider()
-        self.widget1Layout.addWidget(self.label1, alignment=Qt.AlignmentFlag.AlignCenter)
-        self.widget1Layout.addWidget(self.slider1)
+        self.onlineWidget = QWidget()
+        self.onlineLayout = QVBoxLayout(self.onlineWidget)
+        self.onlineLabel = QLabel("Timeout (s)")
+        self.timeoutSlider = TimeoutSlider()
+        self.onlineLayout.addWidget(self.onlineLabel, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.onlineLayout.addWidget(self.timeoutSlider)
         
-        self.widget2 = QWidget()
+        self.offlineWidget = QWidget()
         
-        self.widget3 = QWidget()
-        self.widget3Layout = QVBoxLayout(self.widget3)
-        self.label3 = QLabel("Batch Size")
-        self.slider3 = BatchSizeSlider()
-        self.widget3Layout.addWidget(self.label3, alignment=Qt.AlignmentFlag.AlignCenter)
-        self.widget3Layout.addWidget(self.slider3)
+        self.batchWidget = QWidget()
+        self.batchLayout = QVBoxLayout(self.batchWidget)
+        self.batchLabel = QLabel("Batch Size")
+        self.batchSizeSlider = BatchSizeSlider()
+        self.batchLayout.addWidget(self.batchLabel, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.batchLayout.addWidget(self.batchSizeSlider)
 
         self.stackedWidget = QStackedWidget()
-        self.stackedWidget.addWidget(self.widget1)
-        self.stackedWidget.addWidget(self.widget2)
-        self.stackedWidget.addWidget(self.widget3)
+        self.stackedWidget.addWidget(self.onlineWidget)
+        self.stackedWidget.addWidget(self.offlineWidget)
+        self.stackedWidget.addWidget(self.batchWidget)
 
-    def toggle(self, index):
-        self.button1.setChecked(index == 0)
-        self.button2.setChecked(index == 1)
-        self.button3.setChecked(index == 2)
+    def toggle(self, index: int):
+        self.onlineButton.setChecked(index == 0)
+        self.offlineButton.setChecked(index == 1)
+        self.batchButton.setChecked(index == 2)
         self.stackedWidget.setCurrentIndex(index)
 
     def getTranslator(self):
-        if self.button1.isChecked():
+        if self.onlineButton.isChecked():
             return "Online"
         
-        if self.button2.isChecked():
+        if self.offlineButton.isChecked():
             return "Offline"
         
-        if self.button3.isChecked():
+        if self.batchButton.isChecked():
             return "Batch"
         
         return None
         
     def getTimeout(self):
-        return self.slider1.getTimeout()
+        return self.timeoutSlider.getTimeout()
     
     def getBatchSize(self):
-        return int(self.slider3.getBatchSize())
+        return int(self.batchSizeSlider.getBatchSize())
