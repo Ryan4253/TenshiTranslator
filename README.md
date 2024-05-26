@@ -52,7 +52,7 @@ Example replacement & correction with regex
 The applications are tested on Windows and are available directly for use
 The Python package version requires Python >= 3.10
 To use the offline and batch translator, you need to download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
-To use the batch translator, you need a computer with a Nvidia GPU and [CUDA](https://developer.nvidia.com/cuda-downloads)
+To use the batch translator, you need a computer with a Nvidia GPU and [CUDA](https://developer.nvidia.com/cuda-downloads), then run the install script
 
 ## Benchmarks
 ![benchmark](https://github.com/Ryan4253/TenshiTranslator/assets/71594512/e12ce131-ec07-4de8-a3bb-46bac0a13f41)  
