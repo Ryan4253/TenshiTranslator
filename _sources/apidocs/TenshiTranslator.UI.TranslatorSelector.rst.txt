@@ -1,7 +1,0 @@
-TenshiTranslator.UI.TranslatorSelector module
-=============================================
-
-.. automodule:: TenshiTranslator.UI.TranslatorSelector
-   :members:
-   :undoc-members:
-   :show-inheritance:

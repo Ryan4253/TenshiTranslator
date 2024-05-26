@@ -1,7 +1,0 @@
-TenshiTranslator.UI.CSVFileSelector module
-==========================================
-
-.. automodule:: TenshiTranslator.UI.CSVFileSelector
-   :members:
-   :undoc-members:
-   :show-inheritance:

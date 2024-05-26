@@ -1,7 +1,0 @@
-TenshiTranslator.UI.MainApplication module
-==========================================
-
-.. automodule:: TenshiTranslator.UI.MainApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -10,16 +10,7 @@ Subpackages
    TenshiTranslator.Glossary
    TenshiTranslator.OutputFormat
    TenshiTranslator.Translator
-   TenshiTranslator.UI
    TenshiTranslator.Util
-
-Submodules
-----------
-
-.. toctree::
-   :maxdepth: 4
-
-   TenshiTranslator.TenshiTranslatorGUI
 
 Module contents
 ---------------

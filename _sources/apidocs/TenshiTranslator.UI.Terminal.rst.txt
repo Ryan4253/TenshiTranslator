@@ -1,7 +1,0 @@
-TenshiTranslator.UI.Terminal module
-===================================
-
-.. automodule:: TenshiTranslator.UI.Terminal
-   :members:
-   :undoc-members:
-   :show-inheritance:

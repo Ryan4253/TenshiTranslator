@@ -1,7 +1,0 @@
-TenshiTranslator.UI.FileDragDrop module
-=======================================
-
-.. automodule:: TenshiTranslator.UI.FileDragDrop
-   :members:
-   :undoc-members:
-   :show-inheritance:
