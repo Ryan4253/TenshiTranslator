@@ -1,0 +1,7 @@
+TenshiTranslator.UI.DirectorySelector module
+============================================
+
+.. automodule:: TenshiTranslator.UI.DirectorySelector
+   :members:
+   :undoc-members:
+   :show-inheritance:

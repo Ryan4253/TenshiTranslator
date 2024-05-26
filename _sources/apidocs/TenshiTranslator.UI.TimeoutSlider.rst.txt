@@ -1,0 +1,7 @@
+TenshiTranslator.UI.TimeoutSlider module
+========================================
+
+.. automodule:: TenshiTranslator.UI.TimeoutSlider
+   :members:
+   :undoc-members:
+   :show-inheritance:

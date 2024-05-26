@@ -1,0 +1,7 @@
+TenshiTranslator.UI.OutputFormatSelector module
+===============================================
+
+.. automodule:: TenshiTranslator.UI.OutputFormatSelector
+   :members:
+   :undoc-members:
+   :show-inheritance:

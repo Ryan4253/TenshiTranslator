@@ -1,0 +1,7 @@
+TenshiTranslator.UI.FileFrame module
+====================================
+
+.. automodule:: TenshiTranslator.UI.FileFrame
+   :members:
+   :undoc-members:
+   :show-inheritance:

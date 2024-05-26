@@ -1,0 +1,7 @@
+TenshiTranslator.UI.BatchSizeSlider module
+==========================================
+
+.. automodule:: TenshiTranslator.UI.BatchSizeSlider
+   :members:
+   :undoc-members:
+   :show-inheritance:

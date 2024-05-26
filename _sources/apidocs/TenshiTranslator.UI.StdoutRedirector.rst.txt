@@ -1,0 +1,7 @@
+TenshiTranslator.UI.StdoutRedirector module
+===========================================
+
+.. automodule:: TenshiTranslator.UI.StdoutRedirector
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,29 @@
+TenshiTranslator.UI package
+===========================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   TenshiTranslator.UI.BatchSizeSlider
+   TenshiTranslator.UI.CSVFileSelector
+   TenshiTranslator.UI.DirectorySelector
+   TenshiTranslator.UI.FileDragDrop
+   TenshiTranslator.UI.FileFrame
+   TenshiTranslator.UI.MainApplication
+   TenshiTranslator.UI.OutputFormatSelector
+   TenshiTranslator.UI.StdoutRedirector
+   TenshiTranslator.UI.Terminal
+   TenshiTranslator.UI.TimeoutSlider
+   TenshiTranslator.UI.TranslationProcess
+   TenshiTranslator.UI.TranslatorSelector
+
+Module contents
+---------------
+
+.. automodule:: TenshiTranslator.UI
+   :members:
+   :undoc-members:
+   :show-inheritance:

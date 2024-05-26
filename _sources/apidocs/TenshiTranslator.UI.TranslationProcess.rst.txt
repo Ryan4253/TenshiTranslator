@@ -1,0 +1,7 @@
+TenshiTranslator.UI.TranslationProcess module
+=============================================
+
+.. automodule:: TenshiTranslator.UI.TranslationProcess
+   :members:
+   :undoc-members:
+   :show-inheritance:
