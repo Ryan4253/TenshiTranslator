@@ -10,7 +10,7 @@ pip install -r requirements.txt
 Remove-Item -Recurse html
 
 # Build docs
-sphinx-apidoc -o apidocs ../TenshiTranslator ../TenshiTranslator/Backend.py --separate
+sphinx-apidoc -o apidocs ../TenshiTranslator ../TenshiTranslator/TenshiTranslatorCLI.py ../TenshiTranslator/TenshiTranslatorGUI.py ../TenshiTranslator/UI/* --separate
 make html
 
 # Extract docs

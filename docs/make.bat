@@ -10,7 +10,7 @@ if "%SPHINXBUILD%" == "" (
 set SOURCEDIR=%cd%
 echo %SOURCEDIR%
 set BUILDDIR=build
-set SPHINXOPTS = Backend.py test setup
+set SPHINXOPTS = TenshiTranslatorAPI.py test setup
 
 %SPHINXBUILD% >NUL 2>NUL
 if errorlevel 9009 (

@@ -34,7 +34,7 @@ jobs:
     - name: Build Docs
       working-directory: docs
       run: |
-        sphinx-apidoc -o apidocs ../TenshiTranslator ../TenshiTranslator/Backend.py --separate
+        sphinx-apidoc -o apidocs ../TenshiTranslator ../TenshiTranslator/TenshiTranslatorCLI.py --separate
         make html
         cp build\html ..\docs -r
         
