@@ -9,7 +9,7 @@
 project = 'TenshiTranslator'
 copyright = '2023, Ryan4253'
 author = 'Ryan4253'
-release = '1.0.4'
+release = '2.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
