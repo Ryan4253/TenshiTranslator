@@ -6,11 +6,17 @@
 # TenshiTranslator
 Sugoi Toolkit's [Sugoi Translator](https://sugoitoolkit.com/) is very effective for ACG (Anime, Comit, Games) media translation as the model is trained with data from the same medium. However, the project lacks automation support as all the features require manual control, which makes large file translation incredibly daunting. This project implements automation utility that interfaces with the translator to both automate the translation process and increase the translation accuracy. This project has since then been adopted by over 10 novel series to generate preliminary machine translations for new novels.  
 
+## Demos
+### GUI App (Click For Video)
+[![image](https://github.com/Ryan4253/TenshiTranslator/assets/71594512/674100e7-1b61-4a23-9e72-5284a69a4091)](https://www.youtube.com/watch?v=CoYnrSkI5Q0&ab_channel=RyanLiao)
+
+### CLI App
 ![project](https://github.com/Ryan4253/TenshiTranslator/assets/71594512/263efe3b-5062-4ec2-961e-943658f54ec7)  
 
 
 ## Getting Started
-You can install the project using ```pip install TenshiTranslator```  
+You can download both the CLI and GUI application from the [latest release](https://github.com/Ryan4253/TenshiTranslator/releases/latest) page
+To use the code as a Python package, run ```pip install TenshiTranslator```  
 For more information, visit the documentation [here](https://ryan4253.github.io/TenshiTranslator/)
 
 ## Translator Options
@@ -43,8 +49,9 @@ You can specify translations for specific phrases and also apply corrections to 
 Example replacement & correction with regex
 
 ## Requirements
-To run the program, you need Python >= 3.10  
-To use the offline and batch translator, you need Windows, and download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
+The applications are tested on Windows and are available directly for use
+The Python package version requires Python >= 3.10
+To use the offline and batch translator, you need to download Sugoi Toolkit from [here](https://www.patreon.com/mingshiba/about)  
 To use the batch translator, you need a computer with a Nvidia GPU and [CUDA](https://developer.nvidia.com/cuda-downloads)
 
 ## Benchmarks
